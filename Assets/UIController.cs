@@ -9,19 +9,11 @@ public class UIController : MonoBehaviour {
 	public float DynamicWidth;
 	public float DynamicHeight;
 
-	public enum UIModes {
-		Overview,
-		ThirdPerson
-	}
 
-	public UIModes CurrentMode = UIModes.Overview;
-
-	// Use this for initialization
 	void Start () {
 
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
@@ -34,17 +26,14 @@ public class UIController : MonoBehaviour {
 		DynamicWidth = NativeWidth * (rx / ry);
 		DynamicHeight = NativeHeight;
 
-		if (CurrentMode == UIModes.Overview)
+		if (GameManager.Instance.Paused)
 		{
 			DrawOverviewUI();
 		} 
-		else if (CurrentMode == UIModes.ThirdPerson)
+		else if (GameManager.Instance.Running)
 		{
 			DrawThirdPersonUI();
 		}
-
-
-
 	}
 
 	void DrawOverviewUI()
@@ -55,6 +44,7 @@ public class UIController : MonoBehaviour {
 			{
 				if (GUILayout.Button ("Continue"))
 				{
+					GameManager.Instance.SwitchToThirdPersonMode();
 
 				}
 			}
@@ -65,5 +55,17 @@ public class UIController : MonoBehaviour {
 
 	void DrawThirdPersonUI()
 	{
+		GUILayout.BeginArea(new Rect(DynamicWidth * 0.4f, DynamicHeight * 0.9f, DynamicWidth * 0.2f, DynamicHeight * 0.05f));
+		{
+			GUILayout.BeginVertical();
+			{
+				if (GUILayout.Button ("Pause"))
+				{
+					GameManager.Instance.SwitchToOverviewMode();
+				}
+			}
+			GUILayout.EndVertical();
+		}
+		GUILayout.EndArea();
 	}
 }
