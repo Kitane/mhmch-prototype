@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: ca38c0ab418414fc19b51bb4bb8eb675
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Cannon
+    100002: footL
+    100004: footR
+    100006: handL
+    100008: handR
+    100010: hips
+    100012: laser
+    100014: lowerLegL
+    100016: lowerLegR
+    100018: //RootNode
+    100020: rocketLauncher1
+    100022: rocketLauncher2
+    100024: rocketLauncher3
+    100026: toesL
+    100028: toesR
+    100030: torso
+    100032: upperLegL
+    100034: upperLegR
+    400000: Cannon
+    400002: footL
+    400004: footR
+    400006: handL
+    400008: handR
+    400010: hips
+    400012: laser
+    400014: lowerLegL
+    400016: lowerLegR
+    400018: //RootNode
+    400020: rocketLauncher1
+    400022: rocketLauncher2
+    400024: rocketLauncher3
+    400026: toesL
+    400028: toesR
+    400030: torso
+    400032: upperLegL
+    400034: upperLegR
+    2300000: Cannon
+    2300002: footL
+    2300004: footR
+    2300006: handL
+    2300008: handR
+    2300010: hips
+    2300012: laser
+    2300014: lowerLegL
+    2300016: lowerLegR
+    2300018: rocketLauncher1
+    2300020: rocketLauncher2
+    2300022: rocketLauncher3
+    2300024: toesL
+    2300026: toesR
+    2300028: torso
+    2300030: upperLegL
+    2300032: upperLegR
+    3300000: Cannon
+    3300002: footL
+    3300004: footR
+    3300006: handL
+    3300008: handR
+    3300010: hips
+    3300012: laser
+    3300014: lowerLegL
+    3300016: lowerLegR
+    3300018: rocketLauncher1
+    3300020: rocketLauncher2
+    3300022: rocketLauncher3
+    3300024: toesL
+    3300026: toesR
+    3300028: torso
+    3300030: upperLegL
+    3300032: upperLegR
+    4300000: Cannon
+    4300002: toesL
+    4300004: toesR
+    4300006: torso
+    4300008: handL
+    4300010: upperLegL
+    4300012: upperLegR
+    4300014: hips
+    4300016: lowerLegL
+    4300018: footL
+    4300020: lowerLegR
+    4300022: footR
+    4300024: laser
+    4300026: rocketLauncher2
+    4300028: rocketLauncher3
+    4300030: rocketLauncher1
+    4300032: handR
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

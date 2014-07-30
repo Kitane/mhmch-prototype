@@ -15,7 +15,8 @@ public class ActorScript : MonoBehaviour {
 	public enum ActorTeams
 	{
 		Red,
-		Blue
+		Blue,
+		Neutral
 	}
 
 	public ActorTeams ActorTeam;
