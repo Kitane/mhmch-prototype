@@ -6,28 +6,33 @@ using System.Collections.Generic;
 
 public class ActorScript : MonoBehaviour {
 
-	public GameObject ActorType;
+	// prefab
+	public GameObject 	ActorType;
+	// team allegiance
+	public int 			ActorTeam;
 
-	public int ActorTeam;
-	
-	public GameObject Legs;
-	public GameObject Torso;
+	public float 		TorsoTwistSpeedDeg = 60;
+	public int 			Health;
+	public int 			MaxHealth;
 
-	public float TorsoTwistSpeedDeg = 60;
-	public float TorsoTwistRange;
-
-	public GameObject Target;
+	public GameObject 	CurrentTarget;
+	public Vector3 		CurrentDestination;
 
 	public WaypointPlanner Waypoints;
-	
+
+	//actor parts to control
+	public GameObject 	Legs;
+	public GameObject 	Torso;
+
+
 	void Start () {
 
 	}
 	
 	void Update () 
 	{
-		if (Target != null)
-			Track(Target);
+		if (CurrentTarget != null)
+			Track(CurrentTarget);
 	}
 
 	void Track(GameObject target)
