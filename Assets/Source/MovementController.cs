@@ -9,6 +9,7 @@ public class MovementController : MonoBehaviour {
 	WaypointPlanner WaypointPlanner;
 */
 	NavMeshAgent _navMeshAgent;
+	public GameObject goTerrain;
 
 	public void SetDestination (Transform destination)
 	{
@@ -28,27 +29,40 @@ public class MovementController : MonoBehaviour {
 		{
 			var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit, 1000)) 
+			/*if (Physics.Raycast (ray, out hit, 1000))
+			{
 				//WaypointPlanner.AddWaypoint(hit.point);
 				_navMeshAgent.SetDestination(hit.point);
+			}*/
 
-		}
+			GameObject clickedObject = GetClickedGameObject(out hit);
 
-		/*
-		if (_navMeshAgent.remainingDistance < _navMeshAgent.stoppingDistance)
-		{
-			if (CurrentWaypoint != null) {
-				Object.Destroy(CurrentWaypoint.Owner.gameObject);
-				CurrentWaypoint = null;
-			}
-
-			if( WaypointPlanner.MoreWaypoints)
+			//if collision with terrain
+			if (clickedObject == goTerrain)
 			{
-				CurrentWaypoint = WaypointPlanner.PopWaypoint();
-				_navMeshAgent.SetDestination(CurrentWaypoint.Position);
+				_navMeshAgent.SetDestination(hit.point);//go on new position
 			}
-		}*/
+			else if (clickedObject != null)
+			{
+				//ok we have collision with object
+				Debug.Log("Object clicked:" + clickedObject.name);
+			}
+		}
 	}
 
+	GameObject GetClickedGameObject(out RaycastHit hit)
+	{ 
+		// Builds a ray from camera point of view to the mouse position 
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+		// Casts the ray and get the first game object hit 
+		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+		{
+			return hit.transform.gameObject;
+		}
+		else
+		{
+			return null;
+		}
+	}
 }
