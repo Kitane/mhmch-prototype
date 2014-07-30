@@ -9,7 +9,6 @@ public class UIController : MonoBehaviour {
 	public float DynamicWidth;
 	public float DynamicHeight;
 
-
 	void Start () {
 
 	}
@@ -26,18 +25,17 @@ public class UIController : MonoBehaviour {
 		DynamicWidth = NativeWidth * (rx / ry);
 		DynamicHeight = NativeHeight;
 
-		if (GameManager.Instance.Paused)
-		{
+		if (!GameManager.Instance.Running)
 			DrawOverviewUI();
-		} 
-		else if (GameManager.Instance.Running)
-		{
+		 
+		else 
 			DrawThirdPersonUI();
-		}
+
 	}
 
 	void DrawOverviewUI()
 	{
+		/*
 		GUILayout.BeginArea(new Rect(DynamicWidth * 0.4f, DynamicHeight * 0.9f, DynamicWidth * 0.2f, DynamicHeight * 0.05f));
 		{
 			GUILayout.BeginVertical();
@@ -51,10 +49,12 @@ public class UIController : MonoBehaviour {
 			GUILayout.EndVertical();
 		}
 		GUILayout.EndArea();
+		*/
 	}
 
 	void DrawThirdPersonUI()
 	{
+		/*
 		GUILayout.BeginArea(new Rect(DynamicWidth * 0.4f, DynamicHeight * 0.9f, DynamicWidth * 0.2f, DynamicHeight * 0.05f));
 		{
 			GUILayout.BeginVertical();
@@ -67,5 +67,6 @@ public class UIController : MonoBehaviour {
 			GUILayout.EndVertical();
 		}
 		GUILayout.EndArea();
+		*/
 	}
 }
