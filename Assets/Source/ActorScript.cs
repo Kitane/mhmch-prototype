@@ -24,7 +24,6 @@ public class ActorScript : MonoBehaviour {
 	public GameObject 	Legs;
 	public GameObject 	Torso;
 
-
 	void Start () {
 
 	}
@@ -33,11 +32,19 @@ public class ActorScript : MonoBehaviour {
 	{
 		if (CurrentTarget != null)
 			Track(CurrentTarget);
+		else
+			StopTracking();
 	}
 
 	void Track(GameObject target)
 	{
 		var targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
 		Torso.transform.rotation = Quaternion.RotateTowards(Torso.transform.rotation, targetRotation, TorsoTwistSpeedDeg * Time.deltaTime);
+	}
+
+	void StopTracking()
+	{
+		if (Torso != null)
+			Torso.transform.localRotation = Quaternion.RotateTowards(Torso.transform.localRotation, Quaternion.identity, TorsoTwistSpeedDeg * Time.deltaTime);
 	}
 }

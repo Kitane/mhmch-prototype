@@ -11,6 +11,8 @@ public class MovementController : MonoBehaviour {
 	NavMeshAgent _navMeshAgent;
 	public GameObject goTerrain;
 
+	int IgnoreLayerMask;
+
 	public void SetDestination (Transform destination)
 	{
 		_navMeshAgent.SetDestination(destination.position);
@@ -21,6 +23,7 @@ public class MovementController : MonoBehaviour {
 		_navMeshAgent = GetComponent<NavMeshAgent>();
 		//WaypointPlanner = new WaypointPlanner();
 		//WaypointPlanner.WaypointObject = WaypointObject;
+		IgnoreLayerMask = LayerMask.NameToLayer("Sensors");
 	}
 
 	void Update () 
@@ -49,8 +52,9 @@ public class MovementController : MonoBehaviour {
 		// Builds a ray from camera point of view to the mouse position 
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
+
 		// Casts the ray and get the first game object hit 
-		if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+		if (Physics.Raycast(ray, out hit, Mathf.Infinity, IgnoreLayerMask))
 		{
 			return hit.transform.gameObject;
 		}

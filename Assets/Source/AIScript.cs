@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class AIScript : MonoBehaviour 
 {
@@ -13,8 +14,6 @@ public class AIScript : MonoBehaviour
 	public BehaviourModes BehaviorMode;
 	public float ReactionRange;
 
-
-	SphereCollider _sensors;
 	List<GameObject> _targets;
 	ActorScript _actor;
 
@@ -23,14 +22,10 @@ public class AIScript : MonoBehaviour
 
 	}
 
-	void OnStart()
+	void Start()
 	{
 		_actor = GetComponentInParent<ActorScript>();
 
-		_sensors = _actor.ActorType.AddComponent<SphereCollider>();
-		_sensors.radius = ReactionRange;
-		_sensors.isTrigger = true;
-		
 		_targets = new List<GameObject>();
 	}
 
@@ -41,7 +36,7 @@ public class AIScript : MonoBehaviour
 			AddTarget(other.gameObject);
 	}
 	
-	void OnTriggerLeave(Collider other)
+	void OnTriggerExit(Collider other)
 	{
 		var actor = other.GetComponentInParent<ActorScript>();
 		if (actor != null && actor.ActorTeam != _actor.ActorTeam)
@@ -51,10 +46,15 @@ public class AIScript : MonoBehaviour
 	void AddTarget(GameObject target)
 	{
 		_targets.Add(target);
+		_actor.CurrentTarget = target;
 	}
 	
 	void RemoveTarget(GameObject target)
 	{
 		_targets.Remove(target);
+		if (_targets.Any())
+			_actor.CurrentTarget =_targets[0];
+		else
+			_actor.CurrentTarget = null;
 	}
 }
