@@ -29,11 +29,12 @@ public class MovementController : MonoBehaviour {
 		{
 			var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
+			/*
 			if (Physics.Raycast (ray, out hit, 1000))
 			{
 				//WaypointPlanner.AddWaypoint(hit.point);
 				_navMeshAgent.SetDestination(hit.point);
-			}
+			}*/
 
 			GameObject clickedObject = GetClickedGameObject(out hit);
 
