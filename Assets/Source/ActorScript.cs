@@ -16,7 +16,6 @@ public class ActorScript : MonoBehaviour {
 	public int 			MaxHealth;
 
 	public GameObject 	CurrentTarget;
-	public Vector3 		CurrentDestination;
 
 	public WaypointPlanner Waypoints;
 
@@ -24,8 +23,15 @@ public class ActorScript : MonoBehaviour {
 	public GameObject 	Legs;
 	public GameObject 	Torso;
 
-	void Start () {
+	public NavMeshAgent _navAgent;
 
+	public void SetDestination(Vector3 destination)
+	{
+		_navAgent.SetDestination(destination);
+	}
+
+	void Start () {
+		_navAgent = GetComponent<NavMeshAgent>();
 	}
 	
 	void Update () 

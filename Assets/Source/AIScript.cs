@@ -19,7 +19,8 @@ public class AIScript : MonoBehaviour
 
 	void Update()
 	{
-
+		if (_actor.CurrentTarget != null)
+			_actor.SetDestination(_actor.CurrentTarget.transform.position);
 	}
 
 	void Start()
@@ -57,4 +58,6 @@ public class AIScript : MonoBehaviour
 		else
 			_actor.CurrentTarget = null;
 	}
+
+
 }

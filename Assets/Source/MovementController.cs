@@ -13,10 +13,7 @@ public class MovementController : MonoBehaviour {
 
 	int IgnoreLayerMask;
 
-	public void SetDestination (Transform destination)
-	{
-		_navMeshAgent.SetDestination(destination.position);
-	}
+	ActorScript _actor;
 
 	void Start () 
 	{
@@ -24,6 +21,7 @@ public class MovementController : MonoBehaviour {
 		//WaypointPlanner = new WaypointPlanner();
 		//WaypointPlanner.WaypointObject = WaypointObject;
 		IgnoreLayerMask = LayerMask.NameToLayer("Sensors");
+		_actor = GetComponent<ActorScript>();
 	}
 
 	void Update () 
@@ -37,7 +35,7 @@ public class MovementController : MonoBehaviour {
 			//if collision with terrain
 			if (clickedObject == goTerrain)
 			{
-				_navMeshAgent.SetDestination(hit.point);//go on new position
+				_actor.SetDestination(hit.point);//go on new position
 			}
 			else if (clickedObject != null)
 			{
