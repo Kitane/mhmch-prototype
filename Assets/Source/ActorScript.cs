@@ -24,10 +24,16 @@ public class ActorScript : MonoBehaviour {
 	public GameObject 	Torso;
 
 	public NavMeshAgent _navAgent;
+	public Animator _mechAnimator;
 
 	public void SetDestination(Vector3 destination)
 	{
 		_navAgent.SetDestination(destination);
+		if (_mechAnimator != null)
+		{
+			_mechAnimator.SetBool("walk", true);
+			_mechAnimator.SetBool("stop", false);
+		}
 	}
 
 	void Start () {
@@ -40,6 +46,27 @@ public class ActorScript : MonoBehaviour {
 			Track(CurrentTarget);
 		else
 			StopTracking();
+
+		//is walking
+		if (_mechAnimator != null && _mechAnimator.GetBool("walk"))
+		{
+			float dist = _navAgent.remainingDistance;
+
+			// Check if we've reached the destination
+			if (!_navAgent.pathPending)
+			{
+				if (_navAgent.remainingDistance <= _navAgent.stoppingDistance)
+				{
+					if (!_navAgent.hasPath || _navAgent.velocity.sqrMagnitude == 0f)
+					{
+						// Done
+						Debug.Log ("on the place");
+						_mechAnimator.SetBool("walk", false);
+						_mechAnimator.SetBool("stop", true);
+					}
+				}
+			}
+		}
 	}
 
 	void Track(GameObject target)
