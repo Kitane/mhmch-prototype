@@ -1,0 +1,220 @@
+fileFormatVersion: 2
+guid: 92e5e845d8110be4ab891908a2c0d00f
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: mech01_v5_rig:arm_L
+    100004: mech01_v5_rig:arm_R
+    100006: mech01_v5_rig:body
+    100008: mech01_v5_rig:Cannon
+    100010: mech01_v5_rig:chimney01
+    100012: mech01_v5_rig:chimnez02
+    100014: mech01_v5_rig:foot_L
+    100016: mech01_v5_rig:foot_R
+    100018: mech01_v5_rig:hips
+    100020: mech01_v5_rig:laser
+    100022: mech01_v5_rig:leg01_L
+    100024: mech01_v5_rig:leg01_R
+    100026: mech01_v5_rig:leg02_L
+    100028: mech01_v5_rig:leg02_R
+    100030: mech01_v5_rig:locator1
+    100032: mech01_v5_rig:locator2
+    100034: mech01_v5_rig:pelvis_L
+    100036: mech01_v5_rig:pelvis_R
+    100038: mech01_v5_rig:rocketLauncher
+    100040: mech01_v5_rig:root
+    100042: mech01_v5_rig:shoulder_L
+    100044: mech01_v5_rig:shoulder_R
+    100046: mech01_v5_rig:toe01_L
+    100048: mech01_v5_rig:toe01_R
+    100050: mech01_v5_rig:toe02_L
+    100052: mech01_v5_rig:toe02_R
+    100054: mech01_v5_rig:weapon_arm_L
+    100056: mech01_v5_rig:weapon_arm_R
+    100058: mech01_v5_rig:weapon_shoulder_L
+    100060: mech01_v5_rig:weapon_shoulder_R
+    400000: //RootNode
+    400002: mech01_v5_rig:arm_L
+    400004: mech01_v5_rig:arm_R
+    400006: mech01_v5_rig:body
+    400008: mech01_v5_rig:Cannon
+    400010: mech01_v5_rig:chimney01
+    400012: mech01_v5_rig:chimnez02
+    400014: mech01_v5_rig:foot_L
+    400016: mech01_v5_rig:foot_R
+    400018: mech01_v5_rig:hips
+    400020: mech01_v5_rig:laser
+    400022: mech01_v5_rig:leg01_L
+    400024: mech01_v5_rig:leg01_R
+    400026: mech01_v5_rig:leg02_L
+    400028: mech01_v5_rig:leg02_R
+    400030: mech01_v5_rig:locator1
+    400032: mech01_v5_rig:locator2
+    400034: mech01_v5_rig:pelvis_L
+    400036: mech01_v5_rig:pelvis_R
+    400038: mech01_v5_rig:rocketLauncher
+    400040: mech01_v5_rig:root
+    400042: mech01_v5_rig:shoulder_L
+    400044: mech01_v5_rig:shoulder_R
+    400046: mech01_v5_rig:toe01_L
+    400048: mech01_v5_rig:toe01_R
+    400050: mech01_v5_rig:toe02_L
+    400052: mech01_v5_rig:toe02_R
+    400054: mech01_v5_rig:weapon_arm_L
+    400056: mech01_v5_rig:weapon_arm_R
+    400058: mech01_v5_rig:weapon_shoulder_L
+    400060: mech01_v5_rig:weapon_shoulder_R
+    2300000: mech01_v5_rig:Cannon
+    2300002: mech01_v5_rig:laser
+    2300004: mech01_v5_rig:rocketLauncher
+    3300000: mech01_v5_rig:Cannon
+    3300002: mech01_v5_rig:laser
+    3300004: mech01_v5_rig:rocketLauncher
+    4300000: mech01_v5_rig:laser
+    4300002: mech01_v5_rig:rocketLauncher
+    4300004: mech01_v5_rig:Cannon
+    7400000: Mech01Rocket
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Mech01Rocket
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: mech01_v5_rig:root
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:chimney01
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:chimnez02
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L/mech01_v5_rig:arm_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L/mech01_v5_rig:arm_L/mech01_v5_rig:weapon_arm_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L/mech01_v5_rig:arm_L/mech01_v5_rig:weapon_arm_L/mech01_v5_rig:Cannon
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L/mech01_v5_rig:arm_L/mech01_v5_rig:weapon_arm_L/mech01_v5_rig:Cannon/mech01_v5_rig:locator2
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R/mech01_v5_rig:arm_R
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R/mech01_v5_rig:arm_R/mech01_v5_rig:weapon_arm_R
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R/mech01_v5_rig:arm_R/mech01_v5_rig:weapon_arm_R/mech01_v5_rig:laser
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R/mech01_v5_rig:arm_R/mech01_v5_rig:weapon_arm_R/mech01_v5_rig:laser/mech01_v5_rig:locator1
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:weapon_shoulder_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:weapon_shoulder_R
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:weapon_shoulder_R/mech01_v5_rig:rocketLauncher
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L/mech01_v5_rig:leg02_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L/mech01_v5_rig:leg02_L/mech01_v5_rig:foot_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L/mech01_v5_rig:leg02_L/mech01_v5_rig:foot_L/mech01_v5_rig:toe01_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L/mech01_v5_rig:leg02_L/mech01_v5_rig:foot_L/mech01_v5_rig:toe02_L
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R/mech01_v5_rig:leg02_R
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R/mech01_v5_rig:leg02_R/mech01_v5_rig:foot_R
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R/mech01_v5_rig:leg02_R/mech01_v5_rig:foot_R/mech01_v5_rig:toe01_R
+        weight: 1
+      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R/mech01_v5_rig:leg02_R/mech01_v5_rig:foot_R/mech01_v5_rig:toe02_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 2
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: root
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 5318535d240c1e34e9eb3c9c605a2ddf,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 
