@@ -17,15 +17,30 @@ public class AIScript : MonoBehaviour
 	List<GameObject> _targets;
 	ActorScript _actor;
 
+	float _optimumRange;
+
 	void Update()
 	{
-		if (_actor.CurrentTarget != null)
+
+
+		if (_actor.CurrentTarget != null) {
 			_actor.SetDestination(_actor.CurrentTarget.transform.position);
+
+			float destinationToTarget = Vector3.Distance(_actor.CurrentTarget.transform.position, _actor.gameObject.transform.position);
+
+			foreach(var weapon in _actor.Weapons)
+			{
+				if (_actor.TorsoAlignedToTarget && weapon.Ready && weapon.Range > destinationToTarget)
+					weapon.Fire(_actor.CurrentTarget);
+			}
+		}
 	}
 
 	void Start()
 	{
 		_actor = GetComponentInParent<ActorScript>();
+
+		_optimumRange = _actor.GetComponentsInChildren<WeaponScript>().Min(x => x.Range);
 
 		_targets = new List<GameObject>();
 	}

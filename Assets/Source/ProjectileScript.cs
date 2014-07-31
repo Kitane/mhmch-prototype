@@ -11,10 +11,10 @@ public class ProjectileScript : MonoBehaviour
 	void Update()
 	{
 		transform.Translate(Vector3.forward * Definition.Speed * Time.deltaTime);
-		if (Definition.TrackingSpeed > 0)
+		if (Definition.TrackingSpeed > 0.0f)
 		{
 			var targetRotation = Quaternion.LookRotation(Target.transform.position - transform.position);
-			Quaternion.RotateTowards(transform.rotation, targetRotation, Definition.TrackingSpeed);
+			transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Definition.TrackingSpeed * Time.deltaTime);
 		}
 		RemainingTime -= Time.deltaTime;
 		if (RemainingTime <= 0)

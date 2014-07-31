@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -15,12 +16,15 @@ public class ActorScript : MonoBehaviour {
 	public int 			MaxHealth;
 
 	public GameObject 	CurrentTarget;
+	public bool 		TorsoAlignedToTarget { get; private set;}
 
 	public WaypointPlanner Waypoints;
 
 	//actor parts to control
 	public GameObject 	Legs;
 	public GameObject 	Torso;
+
+	public List<WeaponScript> Weapons;
 
 	public NavMeshAgent _navAgent;
 	public Animator _mechAnimator;
@@ -37,6 +41,8 @@ public class ActorScript : MonoBehaviour {
 
 	void Start () {
 		_navAgent = GetComponent<NavMeshAgent>();
+
+		Weapons = new List<WeaponScript> (GetComponentsInChildren<WeaponScript>());
 	}
 	
 	void Update () 
@@ -71,6 +77,11 @@ public class ActorScript : MonoBehaviour {
 	void Track(GameObject target)
 	{
 		var targetRotation = Quaternion.LookRotation(target.transform.position - transform.position);
+
+
+		float angle = Quaternion.Angle(targetRotation, Torso.transform.rotation);
+		TorsoAlignedToTarget = angle < 2.0f;
+
 		Torso.transform.rotation = Quaternion.RotateTowards(Torso.transform.rotation, targetRotation, TorsoTwistSpeedDeg * Time.deltaTime);
 	}
 
