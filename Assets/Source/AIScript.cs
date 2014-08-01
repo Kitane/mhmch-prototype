@@ -22,7 +22,7 @@ public class AIScript : MonoBehaviour
 	void Update()
 	{
 
-		if (_actor.CurrentTarget != null) {
+		if (_actor.CurrentTarget != null && BehaviorMode != BehaviourModes.Static) {
 			if (_actor.CurrentTarget.GetComponentInParent<ActorScript>().Dead)
 				RemoveTarget(_actor.CurrentTarget);
 			else {
