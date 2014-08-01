@@ -14,10 +14,13 @@ public class PlayerFireControlScript : MonoBehaviour {
 	void Update () {
 		if (_actor.CurrentTarget != null) {
 			float destinationToTarget = (transform.position - _actor.CurrentTarget.transform.position).magnitude;
-			
+
+			if (_actor.CurrentTarget.GetComponentInParent<ActorScript>().Dead)
+				_actor.CurrentTarget = null;
+
 			foreach(var weapon in _actor.Weapons)
 			{
-				if (_actor.TorsoAlignedToTarget && weapon.Ready && weapon.Range > destinationToTarget && weapon.Cost <= _actor.Energy)
+				if (_actor.TorsoAlignedToTarget && weapon.Ready && weapon.AutoFire && weapon.Range > destinationToTarget && weapon.Cost <= _actor.Energy)
 					weapon.Fire(_actor.CurrentTarget);
 			}
 			

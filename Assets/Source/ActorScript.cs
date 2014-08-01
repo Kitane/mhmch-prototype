@@ -72,8 +72,10 @@ public class ActorScript : MonoBehaviour {
 			StartCoroutine(PlayOneShot("hit"));
 		}
 		if (Health <= 0) {
-			_navAgent.Stop(true);
-			StartCoroutine(PlayOneShot("death"));
+			if (_navAgent != null)
+				_navAgent.Stop(true);
+			if (_mechAnimator != null)
+				StartCoroutine(PlayOneShot("death"));
 		}
 	}
 
@@ -91,6 +93,9 @@ public class ActorScript : MonoBehaviour {
 
 	void LateUpdate()
 	{
+		if (Dead)
+			return;
+
 		if (CurrentTarget != null)
 			Track(CurrentTarget);
 		else {

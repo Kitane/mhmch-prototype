@@ -41,7 +41,7 @@ public class MovementController : MonoBehaviour {
 			{
 				var target = clickedObject.GetComponentInParent<ActorScript>();
 				//ok we have collision with object
-				if (target != null && target.ActorTeam != _actor.ActorTeam) {
+				if (target != null && target.ActorTeam != _actor.ActorTeam && !_actor.Dead) {
 					_actor.CurrentTarget = target.gameObject.transform.Find("Hitzone");
 				}
 				Debug.Log("Object clicked:" + clickedObject.name);

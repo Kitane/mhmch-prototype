@@ -21,20 +21,19 @@ public class AIScript : MonoBehaviour
 
 	void Update()
 	{
+		if (_actor.Dead) return;
 
 		if (_actor.CurrentTarget != null) {
 			float destinationToTarget = (transform.position - _actor.CurrentTarget.transform.position).magnitude;
 
+			if (_actor.CurrentTarget.GetComponentInParent<ActorScript>().Dead)
+				RemoveTarget(_actor.CurrentTarget);
+
 			if (BehaviorMode != BehaviourModes.Static) {
-				if (_actor.CurrentTarget.GetComponentInParent<ActorScript>().Dead)
-					RemoveTarget(_actor.CurrentTarget);
-				else 
-				{
-					if (destinationToTarget > _optimumRange) {
-						_actor.SetDestination(_actor.CurrentTarget.transform.position);
-					} else {
-						_actor.Stop();
-					}
+				if (destinationToTarget > _optimumRange) {
+					_actor.SetDestination(_actor.CurrentTarget.transform.position);
+				} else {
+					_actor.Stop();
 				}
 			}
 
