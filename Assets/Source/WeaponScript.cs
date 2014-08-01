@@ -14,15 +14,24 @@ public abstract class BurstGenerator
 {
 	protected BurstAttributes _attributes;
 	protected GameObject _sourcePos;
+	protected WeaponScript _ownerWeapon;
+	protected ActorScript _ownerActor;
 
-	public BurstGenerator(BurstAttributes attributes, GameObject sourcePos) { _attributes = attributes; _sourcePos = sourcePos; }
+	public BurstGenerator(BurstAttributes attributes, GameObject sourcePos, WeaponScript owner) 
+	{ 
+		_attributes = attributes; 
+		_sourcePos = sourcePos; 
+		_ownerWeapon = owner;
+		_ownerActor = owner.GetComponentInParent<ActorScript>();
+	}
+
 	public abstract void Fire(GameObject target);
 	public abstract void Update();
 }
 
 public class BeamGenerator : BurstGenerator
 {
-	public BeamGenerator(BurstAttributes attributes, GameObject sourcePos) : base(attributes, sourcePos) 
+	public BeamGenerator(BurstAttributes attributes, GameObject sourcePos, WeaponScript owner) : base(attributes, sourcePos, owner) 
 	{
 		_renderer = sourcePos.AddComponent<LineRenderer>();
 		_renderer.material = new Material(Shader.Find("Self-Illumin/Diffuse"));
@@ -44,6 +53,10 @@ public class BeamGenerator : BurstGenerator
 		_pulsesRemaining = _attributes.Rounds;
 		_target = target;
 		_beamOn = false;
+
+		if (_ownerActor._mechAnimator != null)
+			_ownerActor._mechAnimator.SetBool(_ownerWeapon.FiringAnimName, true);
+
 	}
 
 	public override void Update()
@@ -59,6 +72,9 @@ public class BeamGenerator : BurstGenerator
 
 				if (_pulsesRemaining > 0)
 					_timeElapsed = _attributes.RateOfFire;
+				else
+					if (_ownerActor._mechAnimator != null)
+						_ownerActor._mechAnimator.SetBool(_ownerWeapon.FiringAnimName, false);
 			} 
 			else 
 			{
@@ -83,17 +99,19 @@ public class BeamGenerator : BurstGenerator
 
 public class MissileGenerator : BurstGenerator
 {
-	public MissileGenerator(BurstAttributes attributes, GameObject sourcePos) : base(attributes, sourcePos) {}
+	public MissileGenerator(BurstAttributes attributes, GameObject sourcePos, WeaponScript owner) : base(attributes, sourcePos, owner) {}
 
 	float _timeElapsed;
 	int _roundsRemaining;
 	GameObject _target;
+	bool _firing;
 
 	public override void Fire(GameObject target)
 	{
 		_timeElapsed = 0.0f;
 		_roundsRemaining = _attributes.Rounds;
 		_target = target;
+		_firing = true;
 	}
 	
 	public override void Update()
@@ -111,24 +129,32 @@ public class MissileGenerator : BurstGenerator
 			
 			_timeElapsed = _attributes.RateOfFire;
 			_roundsRemaining--;
+
 		} else if (_timeElapsed > 0.0f)
 			_timeElapsed -= Time.deltaTime;
+		else if (_firing) {
+			if (_ownerActor._mechAnimator != null)
+				_ownerActor._mechAnimator.SetBool(_ownerWeapon.FiringAnimName, false);
+			_firing = false;
+		}
 	}
 }
 
 public class ProjectileGenerator : BurstGenerator
 {
-	public ProjectileGenerator(BurstAttributes attributes, GameObject sourcePos) : base(attributes, sourcePos) {}
+	public ProjectileGenerator(BurstAttributes attributes, GameObject sourcePos, WeaponScript owner) : base(attributes, sourcePos, owner) {}
 
 	float _timeElapsed;
 	int _roundsRemaining;
 	GameObject _target;
+	bool _firing;
 	
 	public override void Fire(GameObject target)
 	{
 		_timeElapsed = 0.0f;
 		_roundsRemaining = _attributes.Rounds;
 		_target = target;
+		_firing = true;
 	}
 	
 	public override void Update()
@@ -147,6 +173,11 @@ public class ProjectileGenerator : BurstGenerator
 			_roundsRemaining--;
 		} else if (_timeElapsed > 0.0f)
 			_timeElapsed -= Time.deltaTime;
+		else if (_firing) {
+			if (_ownerActor._mechAnimator != null)
+				_ownerActor._mechAnimator.SetBool(_ownerWeapon.FiringAnimName, false);
+			_firing = false;
+		}
 	}
 }
 
@@ -170,6 +201,7 @@ public class WeaponScript : MonoBehaviour
 	public WeaponClasses WeaponClass;
 	public float ReloadSpeed;
 	public float Cost;
+	public string FiringAnimName;
 
 	public BurstAttributes Burst;
 
@@ -194,15 +226,15 @@ public class WeaponScript : MonoBehaviour
 		switch(WeaponClass)
 		{
 		case WeaponClasses.Energy:
-			_generator = new BeamGenerator(Burst, Model);
+			_generator = new BeamGenerator(Burst, Model, this);
 			break;
 			
 		case WeaponClasses.Missile:
-			_generator = new MissileGenerator(Burst, Model);
+			_generator = new MissileGenerator(Burst, Model, this);
 			break;
 			
 		case WeaponClasses.Projectile:
-			_generator = new ProjectileGenerator(Burst, Model);
+			_generator = new ProjectileGenerator(Burst, Model, this);
 			break;
 		}
 	}
