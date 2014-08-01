@@ -22,23 +22,28 @@ public class AIScript : MonoBehaviour
 	void Update()
 	{
 
-		if (_actor.CurrentTarget != null && BehaviorMode != BehaviourModes.Static) {
-			if (_actor.CurrentTarget.GetComponentInParent<ActorScript>().Dead)
-				RemoveTarget(_actor.CurrentTarget);
-			else {
-				float destinationToTarget = (transform.position - _actor.CurrentTarget.transform.position).magnitude;
-				if (destinationToTarget > _optimumRange) {
-					_actor.SetDestination(_actor.CurrentTarget.transform.position);
-				} else {
-					_actor.Stop();
-				}
+		if (_actor.CurrentTarget != null) {
+			float destinationToTarget = (transform.position - _actor.CurrentTarget.transform.position).magnitude;
 
-				foreach(var weapon in _actor.Weapons)
+			if (BehaviorMode != BehaviourModes.Static) {
+				if (_actor.CurrentTarget.GetComponentInParent<ActorScript>().Dead)
+					RemoveTarget(_actor.CurrentTarget);
+				else 
 				{
-					if (_actor.TorsoAlignedToTarget && weapon.Ready && weapon.Range > destinationToTarget && weapon.Cost <= _actor.Energy)
-						weapon.Fire(_actor.CurrentTarget);
+					if (destinationToTarget > _optimumRange) {
+						_actor.SetDestination(_actor.CurrentTarget.transform.position);
+					} else {
+						_actor.Stop();
+					}
 				}
 			}
+
+			foreach(var weapon in _actor.Weapons)
+			{
+				if (_actor.TorsoAlignedToTarget && weapon.Ready && weapon.Range > destinationToTarget && weapon.Cost <= _actor.Energy)
+					weapon.Fire(_actor.CurrentTarget);
+			}
+		
 		}
 	}
 

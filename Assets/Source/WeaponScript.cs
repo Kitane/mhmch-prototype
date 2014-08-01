@@ -127,6 +127,8 @@ public class MissileGenerator : BurstGenerator
 			bulletScript.RemainingTime = _attributes.Projectile.Duration;
 			bulletScript.Definition = _attributes.Projectile;
 			bulletScript.Target = _target;
+
+
 			
 			_timeElapsed = _attributes.RateOfFire;
 			_roundsRemaining--;
@@ -134,7 +136,7 @@ public class MissileGenerator : BurstGenerator
 		} else if (_timeElapsed > 0.0f)
 			_timeElapsed -= Time.deltaTime;
 		else if (_firing) {
-			if (_ownerActor._mechAnimator != null)
+			if (_ownerActor._mechAnimator != null && !string.IsNullOrEmpty(_ownerWeapon.FiringAnimName))
 				_ownerActor._mechAnimator.SetBool(_ownerWeapon.FiringAnimName, false);
 			_firing = false;
 		}
