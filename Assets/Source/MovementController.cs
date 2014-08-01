@@ -26,7 +26,7 @@ public class MovementController : MonoBehaviour {
 
 	void Update () 
 	{
-		if (!GameManager.Instance.Running && Input.GetMouseButtonUp(0))
+		if (!GameManager.Instance.Running && Input.GetMouseButtonDown(0))
 		{
 			RaycastHit hit;
 
@@ -39,7 +39,11 @@ public class MovementController : MonoBehaviour {
 			}
 			else if (clickedObject != null)
 			{
+				var target = clickedObject.GetComponentInParent<ActorScript>();
 				//ok we have collision with object
+				if (target != null && target.ActorTeam != _actor.ActorTeam) {
+					_actor.CurrentTarget = target.gameObject.transform.Find("Hitzone");
+				}
 				Debug.Log("Object clicked:" + clickedObject.name);
 			}
 		}

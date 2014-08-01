@@ -22,6 +22,7 @@ public class ActorScript : MonoBehaviour {
 
 	public Transform 	CurrentTarget;
 	public bool 		TorsoAlignedToTarget { get; private set;}
+	Quaternion			_previousTorsoRotation;
 
 	public WaypointPlanner Waypoints;
 
@@ -85,6 +86,16 @@ public class ActorScript : MonoBehaviour {
 		_navAgent = GetComponent<NavMeshAgent>();
 
 		Weapons = new List<WeaponScript> (GetComponentsInChildren<WeaponScript>());
+		_previousTorsoRotation = Torso.transform.rotation;
+	}
+
+	void LateUpdate()
+	{
+		if (CurrentTarget != null)
+			Track(CurrentTarget);
+		else {
+			StopTracking();
+		}
 	}
 	
 	void Update () 
@@ -92,10 +103,7 @@ public class ActorScript : MonoBehaviour {
 		if (Dead)
 			return;
 
-		if (CurrentTarget != null)
-			Track(CurrentTarget);
-		else
-			StopTracking();
+
 
 		if (Energy < MaxEnergy)
 		{
@@ -129,17 +137,19 @@ public class ActorScript : MonoBehaviour {
 	{
 		var targetRotation = Quaternion.LookRotation(target.position - transform.position);
 
-
-		float angle = Quaternion.Angle(targetRotation, Torso.transform.rotation);
+		float angle = Quaternion.Angle(targetRotation, _previousTorsoRotation);
 		TorsoAlignedToTarget = angle < 2.0f;
 
-		Torso.transform.rotation = Quaternion.RotateTowards(Torso.transform.rotation, targetRotation, TorsoTwistSpeedDeg * Time.deltaTime);
+		Torso.transform.rotation = Quaternion.RotateTowards(_previousTorsoRotation, targetRotation, TorsoTwistSpeedDeg * Time.deltaTime);
+		_previousTorsoRotation = Torso.transform.rotation;
 	}
 
 	void StopTracking()
 	{
-		if (Torso != null)
-			Torso.transform.localRotation = Quaternion.RotateTowards(Torso.transform.localRotation, Quaternion.identity, TorsoTwistSpeedDeg * Time.deltaTime);
+		if (Torso != null) {
+			Torso.transform.rotation = Quaternion.RotateTowards(_previousTorsoRotation, Quaternion.identity, TorsoTwistSpeedDeg * Time.deltaTime);
+			_previousTorsoRotation = Torso.transform.rotation;
+		}
 	}
 
 	public IEnumerator PlayOneShot(string paramName)

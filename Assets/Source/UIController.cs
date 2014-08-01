@@ -9,8 +9,10 @@ public class UIController : MonoBehaviour {
 	public float DynamicWidth;
 	public float DynamicHeight;
 
-	void Start () {
+	ActorScript _player;
 
+	void Start () {
+		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<ActorScript>();
 	}
 	
 	void Update () {
@@ -27,29 +29,23 @@ public class UIController : MonoBehaviour {
 
 		if (!GameManager.Instance.Running)
 			DrawOverviewUI();
-		 
 		else 
 			DrawThirdPersonUI();
-
 	}
 
 	void DrawOverviewUI()
 	{
-		/*
-		GUILayout.BeginArea(new Rect(DynamicWidth * 0.4f, DynamicHeight * 0.9f, DynamicWidth * 0.2f, DynamicHeight * 0.05f));
-		{
-			GUILayout.BeginVertical();
-			{
-				if (GUILayout.Button ("Continue"))
-				{
-					GameManager.Instance.SwitchToThirdPersonMode();
-
-				}
-			}
-			GUILayout.EndVertical();
-		}
+		GUILayout.BeginArea(new Rect(DynamicWidth * 0.05f, DynamicWidth * 0.2f, DynamicHeight * 0.1f, DynamicWidth * 0.05f));
+		GUILayout.BeginVertical();
+		GUILayout.Label("HP: " + _player.Health + "/" + _player.MaxHealth);
+		GUILayout.Label("Steam Pressure: " + _player.Energy + "/" + _player.MaxEnergy);
+		GUILayout.EndVertical();
 		GUILayout.EndArea();
-		*/
+
+
+		GUILayout.BeginArea(new Rect(DynamicWidth * 0.3f, DynamicWidth * 0.2f, DynamicHeight * 0.1f, DynamicWidth * 0.05f));
+		GUILayout.EndArea();
+
 	}
 
 	void DrawThirdPersonUI()
