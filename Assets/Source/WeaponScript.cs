@@ -25,7 +25,7 @@ public abstract class BurstGenerator
 		_ownerActor = owner.GetComponentInParent<ActorScript>();
 	}
 
-	public abstract void Fire(GameObject target);
+	public abstract void Fire(Transform target);
 	public abstract void Update();
 }
 
@@ -42,12 +42,12 @@ public class BeamGenerator : BurstGenerator
 
 	float _timeElapsed;
 	int _pulsesRemaining;
-	GameObject _target;
+	Transform _target;
 	bool _beamOn;
 
 	LineRenderer _renderer;
 
-	public override void Fire(GameObject target)
+	public override void Fire(Transform target)
 	{
 		_timeElapsed = 0.0f;
 		_pulsesRemaining = _attributes.Rounds;
@@ -69,6 +69,7 @@ public class BeamGenerator : BurstGenerator
 			{
 				_beamOn = false;
 				_renderer.enabled = false;
+				_target.gameObject.GetComponentInParent<ActorScript>().ReceiveDamage(_attributes.Projectile.Damage);
 
 				if (_pulsesRemaining > 0)
 					_timeElapsed = _attributes.RateOfFire;
@@ -92,7 +93,7 @@ public class BeamGenerator : BurstGenerator
 		if (_beamOn)
 		{
 			_renderer.SetPosition(0, _sourcePos.transform.position);
-			_renderer.SetPosition(1, _target.transform.position);
+			_renderer.SetPosition(1, _target.position);
 		}
 	}
 }
@@ -103,10 +104,10 @@ public class MissileGenerator : BurstGenerator
 
 	float _timeElapsed;
 	int _roundsRemaining;
-	GameObject _target;
+	Transform _target;
 	bool _firing;
 
-	public override void Fire(GameObject target)
+	public override void Fire(Transform target)
 	{
 		_timeElapsed = 0.0f;
 		_roundsRemaining = _attributes.Rounds;
@@ -119,7 +120,7 @@ public class MissileGenerator : BurstGenerator
 		if (_roundsRemaining > 0 && _timeElapsed <= 0.0f)
 		{
 			//TODO FIRE bullet 
-			var rotation = Quaternion.LookRotation(_target.transform.position - _sourcePos.transform.position );
+			var rotation = Quaternion.LookRotation(_target.position - _sourcePos.transform.position );
 			
 			GameObject bullet = (GameObject)GameObject.Instantiate(_attributes.Projectile.Model, _sourcePos.transform.position, rotation);
 			var bulletScript = bullet.GetComponent<ProjectileScript>();
@@ -146,10 +147,10 @@ public class ProjectileGenerator : BurstGenerator
 
 	float _timeElapsed;
 	int _roundsRemaining;
-	GameObject _target;
+	Transform _target;
 	bool _firing;
 	
-	public override void Fire(GameObject target)
+	public override void Fire(Transform target)
 	{
 		_timeElapsed = 0.0f;
 		_roundsRemaining = _attributes.Rounds;
@@ -162,7 +163,7 @@ public class ProjectileGenerator : BurstGenerator
 		if (_roundsRemaining > 0 && _timeElapsed <= 0.0f)
 		{
 			//TODO FIRE bullet 
-			var rotation = Quaternion.LookRotation(_target.transform.position - _sourcePos.transform.position );
+			var rotation = Quaternion.LookRotation(_target.position - _sourcePos.transform.position );
 
 			GameObject bullet = (GameObject)GameObject.Instantiate(_attributes.Projectile.Model, _sourcePos.transform.position, rotation);
 			var bulletScript = bullet.GetComponent<ProjectileScript>();
@@ -214,11 +215,14 @@ public class WeaponScript : MonoBehaviour
 
 	BurstGenerator _generator;
 
-	public void Fire(GameObject target)
+	ActorScript _actor;
+
+	public void Fire(Transform target)
 	{
 		RemainingReloadTime = ReloadSpeed;
 		Ready = false;
 		_generator.Fire(target);
+		_actor.PayCost(Cost);
 	}
 
 	void Start()
@@ -237,6 +241,7 @@ public class WeaponScript : MonoBehaviour
 			_generator = new ProjectileGenerator(Burst, Model, this);
 			break;
 		}
+		_actor = GetComponentInParent<ActorScript>();
 	}
 
 	void Update()
