@@ -6,6 +6,7 @@ public class ProjectileScript : MonoBehaviour
 {
 	public ProjectileAttributes Definition;
 	public Transform Target;
+	public int Team;
 	public float RemainingTime;
 
 	public void Impact(Vector3 location)

@@ -23,6 +23,7 @@ public class ActorScript : MonoBehaviour {
 	public Transform 	CurrentTarget;
 	public bool 		TorsoAlignedToTarget { get; private set;}
 	Quaternion			_previousTorsoRotation;
+	public Vector3 		_rotationHack;
 
 	public WaypointPlanner Waypoints;
 
@@ -32,6 +33,8 @@ public class ActorScript : MonoBehaviour {
 
 
 	public List<WeaponScript> Weapons;
+
+	public List<SkillScript> Skills;
 
 	public NavMeshAgent _navAgent;
 	public Animator _mechAnimator;
@@ -69,14 +72,16 @@ public class ActorScript : MonoBehaviour {
 		Health -= damage;
 		if (damage >= DamageShakeTreshold)
 		{
-			StartCoroutine(PlayOneShot("hit"));
+			if (_mechAnimator != null)
+				StartCoroutine(PlayOneShot("hit"));
 		}
 		if (Health <= 0) {
 			if (_navAgent != null)
 				_navAgent.Stop(true);
-			if (_mechAnimator != null)
-				StartCoroutine(PlayOneShot("death"));
+
 		}
+		if (_mechAnimator != null)
+			_mechAnimator.SetFloat("health", Health);
 	}
 
 	public void PayCost(float cost)
@@ -88,7 +93,8 @@ public class ActorScript : MonoBehaviour {
 		_navAgent = GetComponent<NavMeshAgent>();
 
 		Weapons = new List<WeaponScript> (GetComponentsInChildren<WeaponScript>());
-		_previousTorsoRotation = Torso.transform.rotation;
+		Skills = new List<SkillScript> (GetComponentsInChildren<SkillScript>());
+		_previousTorsoRotation = Quaternion.identity;
 	}
 
 	void LateUpdate()
@@ -105,10 +111,13 @@ public class ActorScript : MonoBehaviour {
 	
 	void Update () 
 	{
-		if (Dead)
+		if (Dead) {
+			// cute placeholder for death
+			if (transform.position.y > -30) {
+				transform.Translate(Vector3.down * Time.deltaTime * 3);
+			}
 			return;
-
-
+		}
 
 		if (Energy < MaxEnergy)
 		{
@@ -145,17 +154,28 @@ public class ActorScript : MonoBehaviour {
 		float angle = Quaternion.Angle(targetRotation, _previousTorsoRotation);
 		TorsoAlignedToTarget = angle < 2.0f;
 
-		Torso.transform.rotation = Quaternion.RotateTowards(_previousTorsoRotation, targetRotation, TorsoTwistSpeedDeg * Time.deltaTime);
-		_previousTorsoRotation = Torso.transform.rotation;
+		_previousTorsoRotation = Quaternion.RotateTowards(_previousTorsoRotation, targetRotation, TorsoTwistSpeedDeg * Time.deltaTime);
+
+		if (_mechAnimator == null)
+			Torso.transform.rotation = _previousTorsoRotation;
+		else {
+			Torso.transform.rotation = _previousTorsoRotation * Quaternion.Euler(_rotationHack);
+		}
 	}
 
 	void StopTracking()
 	{
 		if (Torso != null) {
-			Torso.transform.rotation = Quaternion.RotateTowards(_previousTorsoRotation, Quaternion.identity, TorsoTwistSpeedDeg * Time.deltaTime);
-			_previousTorsoRotation = Torso.transform.rotation;
+
+			_previousTorsoRotation = Quaternion.RotateTowards(_previousTorsoRotation, transform.rotation, TorsoTwistSpeedDeg * Time.deltaTime);
+			if (_mechAnimator == null)
+				Torso.transform.rotation =_previousTorsoRotation;
+			else {
+				Torso.transform.rotation = _previousTorsoRotation * Quaternion.Euler(_rotationHack);;
+			}
 		}
 	}
+
 
 	public IEnumerator PlayOneShot(string paramName)
 	{
