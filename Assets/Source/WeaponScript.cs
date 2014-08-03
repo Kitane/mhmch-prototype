@@ -127,6 +127,7 @@ public class MissileGenerator : BurstGenerator
 			bulletScript.RemainingTime = _attributes.Projectile.Duration;
 			bulletScript.Definition = _attributes.Projectile;
 			bulletScript.Target = _target;
+			bulletScript.Team = _ownerActor.ActorTeam;
 
 
 			
@@ -171,6 +172,7 @@ public class ProjectileGenerator : BurstGenerator
 			var bulletScript = bullet.GetComponent<ProjectileScript>();
 			bulletScript.RemainingTime = _attributes.Projectile.Duration;
 			bulletScript.Definition = _attributes.Projectile;
+			bulletScript.Team = _ownerActor.ActorTeam;
 
 			_timeElapsed = _attributes.RateOfFire;
 			_roundsRemaining--;
@@ -183,6 +185,7 @@ public class ProjectileGenerator : BurstGenerator
 		}
 	}
 }
+
 
 public class WeaponScript : MonoBehaviour 
 {
@@ -200,7 +203,7 @@ public class WeaponScript : MonoBehaviour
 	}
 
 			
-	public string Name;
+	public string WeaponName;
 	public WeaponClasses WeaponClass;
 	public float ReloadSpeed;
 	public float Cost;

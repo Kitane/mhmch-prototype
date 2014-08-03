@@ -17,7 +17,7 @@ public class DamageScript : MonoBehaviour {
 	void OnTriggerEnter(Collider other)
 	{
 		var projectile = other.gameObject.GetComponentInParent<ProjectileScript>();
-		if (projectile != null)
+		if (projectile != null && projectile.Team != _actor.ActorTeam)
 		{
 			Debug.Log("damage taken: " + projectile.Definition.Damage);
 			_actor.ReceiveDamage(projectile.Definition.Damage);
