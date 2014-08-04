@@ -34,7 +34,7 @@ public class UIController : MonoBehaviour {
 		DynamicHeight = NativeHeight;
 
 		//_hudWidth = (_player.Weapons.Count + _player.Skills.Count) * DynamicWidth * 0.07f;
-		_hudWidth = 250;//hack set the fix width
+		_hudWidth = 400;//hack set the fix width
 		if (_hudWidth < DynamicWidth * 0.35f)
 			_hudWidth = DynamicWidth * 0.35f;
 
@@ -60,8 +60,23 @@ public class UIController : MonoBehaviour {
 				+ (weapon.AutoFire ? "\nON" : "\nOFF") + "\n" 
 				+ (weapon.RemainingReloadTime > 0 ? weapon.RemainingReloadTime.ToString("0.0") : "")
 				, GUILayout.ExpandHeight(true)))
-				weapon.AutoFire = !weapon.AutoFire;
+			{
+				if (weapon.WeaponClass == WeaponScript.WeaponClasses.TeslaShield)
+				{
+					Debug.Log ("Tesla shield");
+
+					if (weapon.Ready && weapon.Cost <= _player.Energy)
+					{
+						weapon.Fire(_player.CurrentTarget);
+					}
+				}
+				else
+				{
+					weapon.AutoFire = !weapon.AutoFire;
+				}
+			}
 		}
+
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
 

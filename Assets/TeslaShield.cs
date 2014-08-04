@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DamageScriptObstacle : MonoBehaviour {
-	
+public class TeslaShield : MonoBehaviour {
+
 	// Use this for initialization
 	void Start () {
-
+	
 	}
 	
 	// Update is called once per frame
@@ -15,12 +15,12 @@ public class DamageScriptObstacle : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		//Debug.Log("OnTriggerEnter:" + other.gameObject.name);
+		Debug.Log("Tesla shield collider:" + other.gameObject.name);
 
 		var projectile = other.gameObject.GetComponentInParent<ProjectileScript>();
 		if (projectile != null)
 		{
-			//Debug.Log("obstacle damage:" + projectile.Definition.Damage);
+			Debug.Log("destroy projektile: " + projectile.Definition.Damage + " name:" + other.gameObject.name);
 			projectile.Impact(other.gameObject.transform.position);
 		}
 	}
