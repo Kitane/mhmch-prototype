@@ -3,8 +3,8 @@ using System.Collections;
 
 public class UIController : MonoBehaviour {
 
-	public float NativeWidth = 1280;
-	public float NativeHeight = 720;
+	public float NativeWidth = 720;
+	public float NativeHeight = 1280;
 
 	public float DynamicWidth;
 	public float DynamicHeight;
@@ -33,7 +33,8 @@ public class UIController : MonoBehaviour {
 		DynamicWidth = NativeWidth * (rx / ry);
 		DynamicHeight = NativeHeight;
 
-		_hudWidth = (_player.Weapons.Count + _player.Skills.Count) * DynamicWidth * 0.07f;
+		//_hudWidth = (_player.Weapons.Count + _player.Skills.Count) * DynamicWidth * 0.07f;
+		_hudWidth = 250;//hack set the fix width
 		if (_hudWidth < DynamicWidth * 0.35f)
 			_hudWidth = DynamicWidth * 0.35f;
 
