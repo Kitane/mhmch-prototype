@@ -61,19 +61,7 @@ public class UIController : MonoBehaviour {
 				+ (weapon.RemainingReloadTime > 0 ? weapon.RemainingReloadTime.ToString("0.0") : "")
 				, GUILayout.ExpandHeight(true)))
 			{
-				if (weapon.WeaponClass == WeaponScript.WeaponClasses.TeslaShield)
-				{
-					Debug.Log ("Tesla shield");
-
-					if (weapon.Ready && weapon.Cost <= _player.Energy)
-					{
-						weapon.Fire(_player.CurrentTarget);
-					}
-				}
-				else
-				{
-					weapon.AutoFire = !weapon.AutoFire;
-				}
+				weapon.AutoFire = !weapon.AutoFire;
 			}
 		}
 

@@ -186,9 +186,9 @@ public class ProjectileGenerator : BurstGenerator
 	}
 }
 
-public class TeslaShieldGenerator : BurstGenerator
+public class GrenadeGenerator : BurstGenerator
 {
-	public TeslaShieldGenerator(BurstAttributes attributes, GameObject sourcePos, WeaponScript owner) : base(attributes, sourcePos, owner) {}
+	public GrenadeGenerator(BurstAttributes attributes, GameObject sourcePos, WeaponScript owner) : base(attributes, sourcePos, owner) {}
 	
 	float _timeElapsed;
 	int _roundsRemaining;
@@ -201,27 +201,28 @@ public class TeslaShieldGenerator : BurstGenerator
 		_roundsRemaining = _attributes.Rounds;
 		_target = target;
 		_firing = true;
-
-		if (_attributes.Projectile.Model != null)
-		{
-			_attributes.Projectile.Model.SetActive(true);//show tesla shield object
-		}
 	}
 	
 	public override void Update()
 	{
-		if (_timeElapsed < _attributes.Projectile.Duration)
+		if (_roundsRemaining > 0 && _timeElapsed <= 0.0f)
 		{
-			_timeElapsed += Time.deltaTime;//tick
-		}
-		else
-		{
-			if (_ownerActor._mechAnimator != null && !string.IsNullOrEmpty(_ownerWeapon.FiringAnimName))
-			{
+			//TODO FIRE bullet 
+			var rotation = Quaternion.LookRotation(_target.position - _sourcePos.transform.position );
+			
+			GameObject bullet = (GameObject)GameObject.Instantiate(_attributes.Projectile.Model, _sourcePos.transform.position, rotation);
+			var bulletScript = bullet.GetComponent<GrenadeScript>();
+			bulletScript.RemainingTime = _attributes.Projectile.Duration;
+			bulletScript.Definition = _attributes.Projectile;
+			bulletScript.Team = _ownerActor.ActorTeam;
+			
+			_timeElapsed = _attributes.RateOfFire;
+			_roundsRemaining--;
+		} else if (_timeElapsed > 0.0f)
+			_timeElapsed -= Time.deltaTime;
+		else if (_firing) {
+			if (_ownerActor._mechAnimator != null)
 				_ownerActor._mechAnimator.SetBool(_ownerWeapon.FiringAnimName, false);
-			}
-
-			_attributes.Projectile.Model.SetActive(false);//hide tesal shield
 			_firing = false;
 		}
 	}
@@ -234,7 +235,7 @@ public class WeaponScript : MonoBehaviour
 		Energy,
 		Missile,
 		Projectile,
-		TeslaShield
+		Grenade
 	}
 
 	public float Range { 
@@ -286,8 +287,8 @@ public class WeaponScript : MonoBehaviour
 		case WeaponClasses.Projectile:
 			_generator = new ProjectileGenerator(Burst, Model, this);
 			break;
-		case WeaponClasses.TeslaShield:
-			_generator = new TeslaShieldGenerator(Burst, Model, this);
+		case WeaponClasses.Grenade:
+			_generator = new GrenadeGenerator(Burst, Model, this);
 			break;
 		}
 		_actor = GetComponentInParent<ActorScript>();
