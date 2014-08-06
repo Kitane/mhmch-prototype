@@ -1,80 +1,61 @@
 fileFormatVersion: 2
-guid: f60b3d80df8e47b49aa84e1aa1d64c27
+guid: ea04cb271858a9149be85a616229a0d1
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: arm_L
     100002: arm_R
     100004: body
-    100006: Cannon
-    100008: chimney01
-    100010: chimnez02
-    100012: foot_L
-    100014: foot_R
-    100016: hips
-    100018: laser
-    100020: leg01_L
-    100022: leg01_R
-    100024: leg02_L
-    100026: leg02_R
-    100028: locator1
-    100030: locator2
-    100032: //RootNode
-    100034: pelvis_L
-    100036: pelvis_R
-    100038: rocketLauncher
-    100040: root
-    100042: shoulder_L
-    100044: shoulder_R
-    100046: toe01_L
-    100048: toe01_R
-    100050: toe02_L
-    100052: toe02_R
-    100054: weapon_arm_L
-    100056: weapon_arm_R
-    100058: weapon_shoulder_L
-    100060: weapon_shoulder_R
+    100006: chimney01
+    100008: chimnez02
+    100010: foot_L
+    100012: foot_R
+    100014: hips
+    100016: leg01_L
+    100018: leg01_R
+    100020: leg02_L
+    100022: leg02_R
+    100024: //RootNode
+    100026: pelvis_L
+    100028: pelvis_R
+    100030: root
+    100032: shoulder_L
+    100034: shoulder_R
+    100036: toe01_L
+    100038: toe01_R
+    100040: toe02_L
+    100042: toe02_R
+    100044: weapon_arm_L
+    100046: weapon_arm_R
+    100048: weapon_shoulder_L
+    100050: weapon_shoulder_R
     400000: arm_L
     400002: arm_R
     400004: body
-    400006: Cannon
-    400008: chimney01
-    400010: chimnez02
-    400012: foot_L
-    400014: foot_R
-    400016: hips
-    400018: laser
-    400020: leg01_L
-    400022: leg01_R
-    400024: leg02_L
-    400026: leg02_R
-    400028: locator1
-    400030: locator2
-    400032: //RootNode
-    400034: pelvis_L
-    400036: pelvis_R
-    400038: rocketLauncher
-    400040: root
-    400042: shoulder_L
-    400044: shoulder_R
-    400046: toe01_L
-    400048: toe01_R
-    400050: toe02_L
-    400052: toe02_R
-    400054: weapon_arm_L
-    400056: weapon_arm_R
-    400058: weapon_shoulder_L
-    400060: weapon_shoulder_R
-    2300000: Cannon
-    2300002: laser
-    2300004: rocketLauncher
-    3300000: Cannon
-    3300002: laser
-    3300004: rocketLauncher
-    4300000: laser
-    4300002: rocketLauncher
-    4300004: Cannon
-    7400000: Mech01Walk
+    400006: chimney01
+    400008: chimnez02
+    400010: foot_L
+    400012: foot_R
+    400014: hips
+    400016: leg01_L
+    400018: leg01_R
+    400020: leg02_L
+    400022: leg02_R
+    400024: //RootNode
+    400026: pelvis_L
+    400028: pelvis_R
+    400030: root
+    400032: shoulder_L
+    400034: shoulder_R
+    400036: toe01_L
+    400038: toe01_R
+    400040: toe02_L
+    400042: toe02_R
+    400044: weapon_arm_L
+    400046: weapon_arm_R
+    400048: weapon_shoulder_L
+    400050: weapon_shoulder_R
+    7400000: Mech01Run
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -92,7 +73,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Mech01Walk
+      name: Mech01Run
       takeName: Take 001
       firstFrame: 0
       lastFrame: 20
@@ -105,10 +86,10 @@ ModelImporter:
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
-      loopBlendPositionXZ: 0
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
+      keepOriginalPositionXZ: 1
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -133,25 +114,15 @@ ModelImporter:
         weight: 1
       - path: root/hips/body/shoulder_L/arm_L/weapon_arm_L
         weight: 1
-      - path: root/hips/body/shoulder_L/arm_L/weapon_arm_L/Cannon
-        weight: 1
-      - path: root/hips/body/shoulder_L/arm_L/weapon_arm_L/Cannon/locator2
-        weight: 1
       - path: root/hips/body/shoulder_R
         weight: 1
       - path: root/hips/body/shoulder_R/arm_R
         weight: 1
       - path: root/hips/body/shoulder_R/arm_R/weapon_arm_R
         weight: 1
-      - path: root/hips/body/shoulder_R/arm_R/weapon_arm_R/laser
-        weight: 1
-      - path: root/hips/body/shoulder_R/arm_R/weapon_arm_R/laser/locator1
-        weight: 1
       - path: root/hips/body/weapon_shoulder_L
         weight: 1
       - path: root/hips/body/weapon_shoulder_R
-        weight: 1
-      - path: root/hips/body/weapon_shoulder_R/rocketLauncher
         weight: 1
       - path: root/hips/pelvis_L
         weight: 1

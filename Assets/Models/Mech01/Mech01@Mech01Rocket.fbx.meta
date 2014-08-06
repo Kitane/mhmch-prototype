@@ -34,6 +34,31 @@ ModelImporter:
     100056: mech01_v5_rig:weapon_arm_R
     100058: mech01_v5_rig:weapon_shoulder_L
     100060: mech01_v5_rig:weapon_shoulder_R
+    100062: arm_L
+    100064: arm_R
+    100066: body
+    100068: chimney01
+    100070: chimnez02
+    100072: foot_L
+    100074: foot_R
+    100076: hips
+    100078: leg01_L
+    100080: leg01_R
+    100082: leg02_L
+    100084: leg02_R
+    100086: pelvis_L
+    100088: pelvis_R
+    100090: root
+    100092: shoulder_L
+    100094: shoulder_R
+    100096: toe01_L
+    100098: toe01_R
+    100100: toe02_L
+    100102: toe02_R
+    100104: weapon_arm_L
+    100106: weapon_arm_R
+    100108: weapon_shoulder_L
+    100110: weapon_shoulder_R
     400000: //RootNode
     400002: mech01_v5_rig:arm_L
     400004: mech01_v5_rig:arm_R
@@ -65,6 +90,31 @@ ModelImporter:
     400056: mech01_v5_rig:weapon_arm_R
     400058: mech01_v5_rig:weapon_shoulder_L
     400060: mech01_v5_rig:weapon_shoulder_R
+    400062: arm_L
+    400064: arm_R
+    400066: body
+    400068: chimney01
+    400070: chimnez02
+    400072: foot_L
+    400074: foot_R
+    400076: hips
+    400078: leg01_L
+    400080: leg01_R
+    400082: leg02_L
+    400084: leg02_R
+    400086: pelvis_L
+    400088: pelvis_R
+    400090: root
+    400092: shoulder_L
+    400094: shoulder_R
+    400096: toe01_L
+    400098: toe01_R
+    400100: toe02_L
+    400102: toe02_R
+    400104: weapon_arm_L
+    400106: weapon_arm_R
+    400108: weapon_shoulder_L
+    400110: weapon_shoulder_R
     2300000: mech01_v5_rig:Cannon
     2300002: mech01_v5_rig:laser
     2300004: mech01_v5_rig:rocketLauncher
@@ -84,6 +134,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
+    motionNodeName: 
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -117,65 +168,55 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: mech01_v5_rig:root
+      - path: root
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips
+      - path: root/hips
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body
+      - path: root/hips/body
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:chimney01
+      - path: root/hips/body/chimney01
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:chimnez02
+      - path: root/hips/body/chimnez02
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L
+      - path: root/hips/body/shoulder_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L/mech01_v5_rig:arm_L
+      - path: root/hips/body/shoulder_L/arm_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L/mech01_v5_rig:arm_L/mech01_v5_rig:weapon_arm_L
+      - path: root/hips/body/shoulder_L/arm_L/weapon_arm_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L/mech01_v5_rig:arm_L/mech01_v5_rig:weapon_arm_L/mech01_v5_rig:Cannon
+      - path: root/hips/body/shoulder_R
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_L/mech01_v5_rig:arm_L/mech01_v5_rig:weapon_arm_L/mech01_v5_rig:Cannon/mech01_v5_rig:locator2
+      - path: root/hips/body/shoulder_R/arm_R
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R
+      - path: root/hips/body/shoulder_R/arm_R/weapon_arm_R
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R/mech01_v5_rig:arm_R
+      - path: root/hips/body/weapon_shoulder_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R/mech01_v5_rig:arm_R/mech01_v5_rig:weapon_arm_R
+      - path: root/hips/body/weapon_shoulder_R
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R/mech01_v5_rig:arm_R/mech01_v5_rig:weapon_arm_R/mech01_v5_rig:laser
+      - path: root/hips/pelvis_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:shoulder_R/mech01_v5_rig:arm_R/mech01_v5_rig:weapon_arm_R/mech01_v5_rig:laser/mech01_v5_rig:locator1
+      - path: root/hips/pelvis_L/leg01_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:weapon_shoulder_L
+      - path: root/hips/pelvis_L/leg01_L/leg02_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:weapon_shoulder_R
+      - path: root/hips/pelvis_L/leg01_L/leg02_L/foot_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:body/mech01_v5_rig:weapon_shoulder_R/mech01_v5_rig:rocketLauncher
+      - path: root/hips/pelvis_L/leg01_L/leg02_L/foot_L/toe01_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L
+      - path: root/hips/pelvis_L/leg01_L/leg02_L/foot_L/toe02_L
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L
+      - path: root/hips/pelvis_R
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L/mech01_v5_rig:leg02_L
+      - path: root/hips/pelvis_R/leg01_R
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L/mech01_v5_rig:leg02_L/mech01_v5_rig:foot_L
+      - path: root/hips/pelvis_R/leg01_R/leg02_R
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L/mech01_v5_rig:leg02_L/mech01_v5_rig:foot_L/mech01_v5_rig:toe01_L
+      - path: root/hips/pelvis_R/leg01_R/leg02_R/foot_R
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_L/mech01_v5_rig:leg01_L/mech01_v5_rig:leg02_L/mech01_v5_rig:foot_L/mech01_v5_rig:toe02_L
+      - path: root/hips/pelvis_R/leg01_R/leg02_R/foot_R/toe01_R
         weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R
-        weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R
-        weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R/mech01_v5_rig:leg02_R
-        weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R/mech01_v5_rig:leg02_R/mech01_v5_rig:foot_R
-        weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R/mech01_v5_rig:leg02_R/mech01_v5_rig:foot_R/mech01_v5_rig:toe01_R
-        weight: 1
-      - path: mech01_v5_rig:root/mech01_v5_rig:hips/mech01_v5_rig:pelvis_R/mech01_v5_rig:leg01_R/mech01_v5_rig:leg02_R/mech01_v5_rig:foot_R/mech01_v5_rig:toe02_R
+      - path: root/hips/pelvis_R/leg01_R/leg02_R/foot_R/toe02_R
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
