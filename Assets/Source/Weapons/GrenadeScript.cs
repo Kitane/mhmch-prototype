@@ -8,6 +8,12 @@ public class GrenadeScript : MonoBehaviour
 	public Transform Target;
 	public int Team;
 	public float RemainingTime;
+	public Rigidbody _grenadeRigidBody;
+
+	public void Start()
+	{
+
+	}
 
 	public void Impact(Vector3 location)
 	{
