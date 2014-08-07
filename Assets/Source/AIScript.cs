@@ -37,9 +37,11 @@ public class AIScript : MonoBehaviour
 				}
 			}
 
+			ActorScript targetActorScript = _actor.CurrentTarget.gameObject.GetComponentInParent<ActorScript>();
+
 			foreach(var weapon in _actor.Weapons)
 			{
-				if (_actor.TorsoAlignedToTarget && weapon.Ready && weapon.Range > destinationToTarget && weapon.Cost <= _actor.Energy)
+				if (_actor.TorsoAlignedToTarget && weapon.Ready && weapon.Range > destinationToTarget && weapon.Cost <= _actor.Energy && !targetActorScript.Dead)
 					weapon.Fire(_actor.CurrentTarget);
 			}
 		

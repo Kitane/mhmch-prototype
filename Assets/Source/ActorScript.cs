@@ -43,6 +43,8 @@ public class ActorScript : MonoBehaviour {
 
 	public bool Dead { get { return Health <= 0; } }
 
+	private string[] ANIMATION_STATES = {"walk", "stop", "shootL", "shootR", "rocket", "hit", "death", "run"};
+
 
 	public void SetDestination(Vector3 destination)
 	{
@@ -72,16 +74,31 @@ public class ActorScript : MonoBehaviour {
 		Health -= damage;
 		if (damage >= DamageShakeTreshold)
 		{
-			if (_mechAnimator != null)
+			if (_mechAnimator != null && Health > 0)
+			{
 				StartCoroutine(PlayOneShot("hit"));
+			}
 		}
-		if (Health <= 0) {
-			if (_navAgent != null)
-				_navAgent.Stop(true);
 
-		}
 		if (_mechAnimator != null)
+		{
 			_mechAnimator.SetFloat("health", Health);
+		}
+
+		if (Health <= 0)
+		{
+			if (_navAgent != null)
+			{
+				_navAgent.Stop(true);
+			}
+
+			if (_mechAnimator != null && !_mechAnimator.GetBool("death"))
+			{
+				Debug.Log ("health:" + _mechAnimator.GetFloat("health"));
+				SetAnimationStateWithStopOthers("death");
+			}
+		}
+
 	}
 
 	public void PayCost(float cost)
@@ -111,11 +128,13 @@ public class ActorScript : MonoBehaviour {
 	
 	void Update () 
 	{
-		if (Dead) {
+		if (Dead)
+		{
 			// cute placeholder for death
 			if (transform.position.y > -30) {
 				transform.Translate(Vector3.down * Time.deltaTime * 3);
 			}
+
 			return;
 		}
 
@@ -184,4 +203,11 @@ public class ActorScript : MonoBehaviour {
 		_mechAnimator.SetBool(paramName, false);
 	}
 
+	private void SetAnimationStateWithStopOthers(string stateName)
+	{
+		foreach (string stateNameToSet in ANIMATION_STATES)
+		{
+			_mechAnimator.SetBool(stateNameToSet, stateName == stateNameToSet);//set true for our state and false for all others
+		}
+	}
 }
