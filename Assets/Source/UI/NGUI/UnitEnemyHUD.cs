@@ -34,12 +34,12 @@ public class UnitEnemyHUD : MonoBehaviour
 	
 	void LateUpdate()
 	{
-		if (target == null) { Destroy(gameObject); return; }
+		if (target == null || (actorScript != null && actorScript.Dead)) { Destroy(gameObject); return; }
 		
 		mPos = mGameCam.WorldToViewportPoint(target.position);
 		
 		bool visible = (mPos.z > 0f && mPos.x > 0f && mPos.x < 1f && mPos.y > 0f && mPos.y < 1f);
-		
+
 		if (mVisible != visible)
 		{
 			mVisible = visible;
