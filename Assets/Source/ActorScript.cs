@@ -43,6 +43,7 @@ public class ActorScript : MonoBehaviour {
 
 	public bool Dead { get { return Health <= 0; } }
 
+	private int _timeToGameOver = 200;
 	private string[] ANIMATION_STATES = {"walk", "stop", "shootL", "shootR", "rocket", "hit", "death", "run"};
 
 
@@ -130,13 +131,9 @@ public class ActorScript : MonoBehaviour {
 	{
 		if (Dead)
 		{
-			// cute placeholder for death
-			if (transform.position.y > -30) {
-				transform.Translate(Vector3.down * Time.deltaTime * 3);
-			}
-			else if (ActorTeam == 1)//player
+			if (_timeToGameOver-- < 0)
 			{
-				Application.LoadLevel("GameOverScene");
+				Application.LoadLevel("GameOverScene");//show game over
 			}
 
 			return;
