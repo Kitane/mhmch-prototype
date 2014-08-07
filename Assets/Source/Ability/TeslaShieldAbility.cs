@@ -1,44 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TeslaShieldAbility : IAbility
+public class TeslaShieldAbility : MonoBehaviour
 {
+	public float _shieldRadius;
+	public float _shieldDuration;
 
-	/*public TeslaShieldAbility(BurstAttributes attributes, GameObject sourcePos, WeaponScript owner) : base(attributes, sourcePos, owner) {}
-	
-	float _timeElapsed;
-	int _roundsRemaining;
-	Transform _target;
-	bool _firing;
-	
-	public override void Fire(Transform target)
+	public GameObject _shieldVisualisation;
+
+	private float _timeElapsed;
+
+	public void StartAbility()
 	{
-		_timeElapsed = 0.0f;
-		_roundsRemaining = _attributes.Rounds;
-		_target = target;
-		_firing = true;
-		
-		if (_attributes.Projectile.Model != null)
+		if (_shieldVisualisation != null)
 		{
-			_attributes.Projectile.Model.SetActive(true);//show tesla shield object
+			_shieldVisualisation.SetActive(true);//show tesla shield object
 		}
 	}
 	
-	public override void Update()
+	public void Update()
 	{
-		if (_timeElapsed < _attributes.Projectile.Duration)
+		if (_timeElapsed < _shieldDuration)
 		{
 			_timeElapsed += Time.deltaTime;//tick
 		}
 		else
 		{
-			if (_ownerActor._mechAnimator != null && !string.IsNullOrEmpty(_ownerWeapon.FiringAnimName))
-			{
-				_ownerActor._mechAnimator.SetBool(_ownerWeapon.FiringAnimName, false);
-			}
-			
-			_attributes.Projectile.Model.SetActive(false);//hide tesal shield
-			_firing = false;
+			_shieldVisualisation.SetActive(false);//hide tesal shield
 		}
-	}*/
+	}
 }

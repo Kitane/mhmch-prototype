@@ -7,4 +7,5 @@ using System.Collections;
  * */
 public interface IAbility
 {
+	void StartAbility();
 }
