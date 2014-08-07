@@ -134,6 +134,10 @@ public class ActorScript : MonoBehaviour {
 			if (transform.position.y > -30) {
 				transform.Translate(Vector3.down * Time.deltaTime * 3);
 			}
+			else if (ActorTeam == 1)//player
+			{
+				Application.LoadLevel("GameOverScene");
+			}
 
 			return;
 		}
