@@ -136,7 +136,7 @@ public class ActorScript : MonoBehaviour {
 			}
 			else if (ActorTeam == 1)//player
 			{
-				Application.LoadLevel("SplashScene");
+				Application.LoadLevel("GameOverScene");
 			}
 
 			return;
