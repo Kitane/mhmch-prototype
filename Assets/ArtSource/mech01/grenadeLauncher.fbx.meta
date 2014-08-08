@@ -1,59 +1,13 @@
 fileFormatVersion: 2
-guid: 8a5d2a19f65eaf84999b454daec6ed49
+guid: 983d89f6dcab6e54c96aece019aec4f8
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: group1
-    100002: group2
-    100004: obstacle_houses1
-    100006: obstacle_houses2
-    100008: obstacle_houses3
-    100010: obstacle_park1
-    100012: //RootNode
-    100014: pCube11
-    100016: pCube12
-    100018: pCube14
-    100020: pCube15
-    100022: pCube16
-    100024: pCube17
-    100026: pCube33
-    100028: pCube35
-    100030: pCube8
-    100032: pCube9
-    100034: pPlane1
-    400000: group1
-    400002: group2
-    400004: obstacle_houses1
-    400006: obstacle_houses2
-    400008: obstacle_houses3
-    400010: obstacle_park1
-    400012: //RootNode
-    400014: pCube11
-    400016: pCube12
-    400018: pCube14
-    400020: pCube15
-    400022: pCube16
-    400024: pCube17
-    400026: pCube33
-    400028: pCube35
-    400030: pCube8
-    400032: pCube9
-    400034: pPlane1
-    2300000: obstacle_houses1
-    2300002: obstacle_houses2
-    2300004: obstacle_houses3
-    2300006: obstacle_park1
-    2300008: pPlane1
-    3300000: obstacle_houses1
-    3300002: obstacle_houses2
-    3300004: obstacle_houses3
-    3300006: obstacle_park1
-    3300008: pPlane1
-    4300000: obstacle_houses1
-    4300002: obstacle_houses2
-    4300004: obstacle_houses3
-    4300006: pPlane1
-    4300008: obstacle_park1
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: grenadeLauncher
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -74,7 +28,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
