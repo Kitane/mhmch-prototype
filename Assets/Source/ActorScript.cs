@@ -131,7 +131,7 @@ public class ActorScript : MonoBehaviour {
 	{
 		if (Dead)
 		{
-			if (_timeToGameOver-- < 0)
+			if (_timeToGameOver-- < 0 && ActorTeam == 1)
 			{
 				Application.LoadLevel("GameOverScene");//show game over
 			}

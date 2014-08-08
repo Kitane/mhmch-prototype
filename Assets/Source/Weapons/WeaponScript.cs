@@ -163,7 +163,7 @@ public class ProjectileGenerator : BurstGenerator
 	
 	public override void Update()
 	{
-		if (_roundsRemaining > 0 && _timeElapsed <= 0.0f)
+		if (_roundsRemaining > 0 && _timeElapsed <= 0.0f && _target != null)
 		{
 			//TODO FIRE bullet 
 			var rotation = Quaternion.LookRotation(_target.position - _sourcePos.transform.position );
@@ -290,6 +290,7 @@ public class WeaponScript : MonoBehaviour
 	public BurstAttributes Burst;
 
 	public bool AutoFire;
+	public bool enabled;
 
 	public GameObject Model;
 

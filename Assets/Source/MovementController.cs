@@ -14,6 +14,7 @@ public class MovementController : MonoBehaviour {
 	int IgnoreLayerMask;
 
 	ActorScript _actor;
+	PlayerFireControlScript _fireControlScript;
 
 	void Start () 
 	{
@@ -22,6 +23,7 @@ public class MovementController : MonoBehaviour {
 		//WaypointPlanner.WaypointObject = WaypointObject;
 		IgnoreLayerMask = LayerMask.NameToLayer("Sensors");
 		_actor = GetComponent<ActorScript>();
+		_fireControlScript = GetComponent<PlayerFireControlScript>();
 	}
 
 	void Update () 
@@ -39,12 +41,19 @@ public class MovementController : MonoBehaviour {
 			}
 			else if (clickedObject != null)
 			{
+				Debug.Log("Object clicked:" + clickedObject.name);
+
 				var target = clickedObject.GetComponentInParent<ActorScript>();
 				//ok we have collision with object
-				if (target != null && target.ActorTeam != _actor.ActorTeam && !_actor.Dead) {
+				if (target != null && target.ActorTeam != _actor.ActorTeam && !_actor.Dead)
+				{
 					_actor.CurrentTarget = target.gameObject.transform.Find("Hitzone");
+
+					if (_fireControlScript != null)
+					{
+						_fireControlScript.FireOnTarget();
+					}
 				}
-				Debug.Log("Object clicked:" + clickedObject.name);
 			}
 		}
 	}

@@ -15,13 +15,46 @@ public class UIController : MonoBehaviour {
 	public UISlider _steamBar;
 	public UISlider _healthBar;
 
+	public UISwitchButton _cannonSwitchButton;
+	public UISwitchButton _laserSwitchButton;
+	public UISwitchButton _missiledSwitchButton;
+	public UISwitchButton _grenadeSwitchButton;
+
+	public UIFilledSprite _cannonReloadingVisualisation;
+	public UIFilledSprite _laserReloadingVisualisation;
+	public UIFilledSprite _missilesReloadingVisualisation;
+	public UIFilledSprite _grenadeReloadingVisualisation;
+
 	float _hudWidth;
 
 	ActorScript _player;
 
-	void Start () {
+	void Start ()
+	{
 		_player = GameObject.FindGameObjectWithTag("Player").GetComponent<ActorScript>();
 
+		if (_player != null)
+		{
+			if (_cannonSwitchButton != null)
+			{
+				_cannonSwitchButton.SwitchState = IsWeaponEnabled(WeaponScript.WeaponClasses.Projectile);
+			}
+			
+			if (_laserSwitchButton != null)
+			{
+				_laserSwitchButton.SwitchState = IsWeaponEnabled(WeaponScript.WeaponClasses.Energy);
+			}
+			
+			if (_missiledSwitchButton != null)
+			{
+				_missiledSwitchButton.SwitchState = IsWeaponEnabled(WeaponScript.WeaponClasses.Missile);
+			}
+			
+			if (_grenadeSwitchButton != null)
+			{
+				_grenadeSwitchButton.SwitchState = IsWeaponEnabled(WeaponScript.WeaponClasses.Grenade);
+			}
+		}
 	}
 	
 	void Update ()
@@ -35,6 +68,8 @@ public class UIController : MonoBehaviour {
 		{
 			_healthBar.sliderValue = _player.Health / _player.MaxHealth;
 		}
+
+		UpdateWeaponsReloadUI();
 	}
 
 	void OnGUI() {
@@ -65,7 +100,7 @@ public class UIController : MonoBehaviour {
 
 
 		GUILayout.BeginHorizontal(ActionBarStyle);
-		foreach(var weapon in _player.Weapons)
+		/*foreach(var weapon in _player.Weapons)
 		{
 			if (GUILayout.Button(
 				weapon.WeaponName 
@@ -75,7 +110,7 @@ public class UIController : MonoBehaviour {
 			{
 				weapon.AutoFire = !weapon.AutoFire;
 			}
-		}
+		}*/
 
 		GUILayout.EndHorizontal();
 		GUILayout.EndVertical();
@@ -100,5 +135,104 @@ public class UIController : MonoBehaviour {
 		}
 		GUILayout.EndArea();
 		*/
+	}
+
+	void OnWeaponSelection(GameObject gameObject)
+	{
+		string buttonName = gameObject.name;
+		Debug.Log("OnWeaponSelection:" + buttonName);
+		
+		UISwitchButton uiSwitchButton = gameObject.GetComponent<UISwitchButton>();
+		WeaponScript.WeaponClasses weaponType = WeaponScript.WeaponClasses.Projectile;
+		
+		if (buttonName == "CannonButton")
+		{
+			weaponType = WeaponScript.WeaponClasses.Projectile;
+		}
+		else if (buttonName == "LaserButton")
+		{
+			weaponType = WeaponScript.WeaponClasses.Energy;
+		}
+		else if (buttonName == "MissilesButton")
+		{
+			weaponType = WeaponScript.WeaponClasses.Missile;
+		}
+		else if (buttonName == "GrenadesButton")
+		{
+			weaponType = WeaponScript.WeaponClasses.Grenade;
+		}
+		
+		EnableWeapon(weaponType, uiSwitchButton.SwitchState);
+	}
+
+	private WeaponScript GetWeaponType(WeaponScript.WeaponClasses weaponType)
+	{
+		if (_player == null)
+		{
+			return null;
+		}
+		
+		foreach(WeaponScript weapon in _player.Weapons)
+		{
+			if (weapon.WeaponClass == weaponType)
+			{
+				return weapon;
+			}
+		}
+
+		return null;
+	}
+	
+	private void EnableWeapon(WeaponScript.WeaponClasses weaponType, bool enabled)
+	{
+		if (_player == null)
+		{
+			return;
+		}
+		
+		foreach(WeaponScript weapon in _player.Weapons)
+		{
+			if (weapon.WeaponClass == weaponType)
+			{
+				weapon.enabled = enabled;
+				break;
+			}
+		}
+	}
+	
+	private bool IsWeaponEnabled(WeaponScript.WeaponClasses weaponType)
+	{
+		if (_player == null)
+		{
+			return false;
+		}
+		
+		foreach(WeaponScript weapon in _player.Weapons)
+		{
+			if (weapon.WeaponClass == weaponType)
+			{
+				return weapon.enabled;
+			}
+		}
+		
+		return false;
+	}
+
+	private void UpdateWeaponsReloadUI()
+	{
+		UpdateWeaponReloadUI(_cannonReloadingVisualisation, WeaponScript.WeaponClasses.Projectile);
+		UpdateWeaponReloadUI(_laserReloadingVisualisation, WeaponScript.WeaponClasses.Energy);
+		UpdateWeaponReloadUI(_missilesReloadingVisualisation, WeaponScript.WeaponClasses.Missile);
+		UpdateWeaponReloadUI(_grenadeReloadingVisualisation, WeaponScript.WeaponClasses.Grenade);
+	}
+
+	private void UpdateWeaponReloadUI(UIFilledSprite filledSprite, WeaponScript.WeaponClasses weaponType)
+	{
+		WeaponScript weapon = GetWeaponType(weaponType);
+
+		if (filledSprite != null && weapon != null)
+		{
+			filledSprite.fillAmount = 1 - (weapon.RemainingReloadTime / weapon.ReloadSpeed);
+		}
 	}
 }
