@@ -12,6 +12,9 @@ public class UIController : MonoBehaviour {
 	public GUIStyle InfoHUDStyle;
 	public GUIStyle ActionBarStyle;
 
+	public UISlider _steamBar;
+	public UISlider _healthBar;
+
 	float _hudWidth;
 
 	ActorScript _player;
@@ -21,8 +24,17 @@ public class UIController : MonoBehaviour {
 
 	}
 	
-	void Update () {
-	
+	void Update ()
+	{
+		if (_steamBar != null)
+		{
+			_steamBar.sliderValue = _player.Energy / _player.MaxEnergy;
+		}
+
+		if (_healthBar != null)
+		{
+			_healthBar.sliderValue = _player.Health / _player.MaxHealth;
+		}
 	}
 
 	void OnGUI() {
@@ -48,8 +60,8 @@ public class UIController : MonoBehaviour {
 	{
 		GUILayout.BeginArea(new Rect(DynamicWidth * 0.01f, DynamicHeight * 0.8f, _hudWidth, DynamicHeight * 0.2f));
 		GUILayout.BeginVertical(InfoHUDStyle);
-		GUILayout.Label("HP: " + _player.Health + "/" + _player.MaxHealth, InfoHUDStyle);
-		GUILayout.Label("Steam: " + _player.Energy + "/" + _player.MaxEnergy, InfoHUDStyle);
+		//GUILayout.Label("HP: " + _player.Health + "/" + _player.MaxHealth, InfoHUDStyle);
+		//GUILayout.Label("Steam: " + _player.Energy + "/" + _player.MaxEnergy, InfoHUDStyle);
 
 
 		GUILayout.BeginHorizontal(ActionBarStyle);
