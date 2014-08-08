@@ -26,6 +26,7 @@ public class UIController : MonoBehaviour {
 	public UIFilledSprite _grenadeReloadingVisualisation;
 
 	public UISwitchImageButton _autoFireSwitchButton;
+	public UIGrid _weaponsGrid;
 
 	float _hudWidth;
 
@@ -40,21 +41,30 @@ public class UIController : MonoBehaviour {
 			if (_cannonSwitchButton != null)
 			{
 				_cannonSwitchButton.SwitchState = IsWeaponEnabled(WeaponScript.WeaponClasses.Projectile);
+				_cannonSwitchButton.gameObject.transform.parent.gameObject.SetActive(ExistWeapon(WeaponScript.WeaponClasses.Projectile));
 			}
 			
 			if (_laserSwitchButton != null)
 			{
 				_laserSwitchButton.SwitchState = IsWeaponEnabled(WeaponScript.WeaponClasses.Energy);
+				_laserSwitchButton.gameObject.transform.parent.gameObject.SetActive(ExistWeapon(WeaponScript.WeaponClasses.Energy));
 			}
 			
 			if (_missiledSwitchButton != null)
 			{
 				_missiledSwitchButton.SwitchState = IsWeaponEnabled(WeaponScript.WeaponClasses.Missile);
+				_missiledSwitchButton.gameObject.transform.parent.gameObject.SetActive(ExistWeapon(WeaponScript.WeaponClasses.Missile));
 			}
 			
 			if (_grenadeSwitchButton != null)
 			{
 				_grenadeSwitchButton.SwitchState = IsWeaponEnabled(WeaponScript.WeaponClasses.Grenade);
+				_grenadeSwitchButton.gameObject.transform.parent.gameObject.SetActive(ExistWeapon(WeaponScript.WeaponClasses.Grenade));
+			}
+
+			if (_weaponsGrid != null)
+			{
+				_weaponsGrid.repositionNow = true;
 			}
 
 			if (_autoFireSwitchButton != null)
@@ -229,6 +239,24 @@ public class UIController : MonoBehaviour {
 			if (weapon.WeaponClass == weaponType)
 			{
 				return weapon.enabled;
+			}
+		}
+		
+		return false;
+	}
+
+	private bool ExistWeapon(WeaponScript.WeaponClasses weaponType)
+	{
+		if (_player == null)
+		{
+			return false;
+		}
+		
+		foreach(WeaponScript weapon in _player.Weapons)
+		{
+			if (weapon.WeaponClass == weaponType)
+			{
+				return true;
 			}
 		}
 		
