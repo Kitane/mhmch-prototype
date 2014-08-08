@@ -4,8 +4,9 @@ using System.Collections;
 public class PlayerFireControlScript : MonoBehaviour {
 
 	ActorScript _actor;
-	// Use this for initialization
+	public bool _autoFire;
 
+	// Use this for initialization
 	void Start () {
 		_actor = GetComponent<ActorScript>();
 	}
@@ -13,8 +14,7 @@ public class PlayerFireControlScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		//if (IsAutofire())
-		if (false)
+		if (_autoFire)
 		{
 			FireOnTarget();
 		}

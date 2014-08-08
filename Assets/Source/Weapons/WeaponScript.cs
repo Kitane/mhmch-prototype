@@ -288,8 +288,7 @@ public class WeaponScript : MonoBehaviour
 	public string FiringAnimName;
 
 	public BurstAttributes Burst;
-
-	public bool AutoFire;
+	
 	public bool enabled;
 
 	public GameObject Model;

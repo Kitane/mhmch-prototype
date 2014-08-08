@@ -165,6 +165,17 @@ public class UIController : MonoBehaviour {
 		EnableWeapon(weaponType, uiSwitchButton.SwitchState);
 	}
 
+	public void AutoFireHandle(GameObject gameObject)
+	{
+		Debug.Log("AutoFireHandle");
+
+		UISwitchImageButton uiSwitchImageButton = gameObject.GetComponent<UISwitchImageButton>();
+		if (uiSwitchImageButton != null)
+		{
+			_player.gameObject.GetComponent<PlayerFireControlScript>()._autoFire = uiSwitchImageButton.SwitchState;
+		}
+	}
+
 	private WeaponScript GetWeaponType(WeaponScript.WeaponClasses weaponType)
 	{
 		if (_player == null)
