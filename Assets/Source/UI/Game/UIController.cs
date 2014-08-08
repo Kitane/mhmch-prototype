@@ -25,6 +25,8 @@ public class UIController : MonoBehaviour {
 	public UIFilledSprite _missilesReloadingVisualisation;
 	public UIFilledSprite _grenadeReloadingVisualisation;
 
+	public UISwitchImageButton _autoFireSwitchButton;
+
 	float _hudWidth;
 
 	ActorScript _player;
@@ -53,6 +55,11 @@ public class UIController : MonoBehaviour {
 			if (_grenadeSwitchButton != null)
 			{
 				_grenadeSwitchButton.SwitchState = IsWeaponEnabled(WeaponScript.WeaponClasses.Grenade);
+			}
+
+			if (_autoFireSwitchButton != null)
+			{
+				_autoFireSwitchButton.SwitchState = _player.gameObject.GetComponent<PlayerFireControlScript>()._autoFire;
 			}
 		}
 	}
@@ -167,11 +174,10 @@ public class UIController : MonoBehaviour {
 
 	public void AutoFireHandle(GameObject gameObject)
 	{
-		Debug.Log("AutoFireHandle");
-
 		UISwitchImageButton uiSwitchImageButton = gameObject.GetComponent<UISwitchImageButton>();
 		if (uiSwitchImageButton != null)
 		{
+			Debug.Log("AutoFireHandle:" + uiSwitchImageButton.SwitchState);
 			_player.gameObject.GetComponent<PlayerFireControlScript>()._autoFire = uiSwitchImageButton.SwitchState;
 		}
 	}

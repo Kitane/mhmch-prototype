@@ -15,9 +15,7 @@ public class UISwitchImageButton : UIImageButton
 	{ 
 		if (isPressed)
 		{
-			SetRightImage();
-
-			_isEnabled = !_isEnabled;
+			SwitchState = !_isEnabled;
 		}
 	}
 
