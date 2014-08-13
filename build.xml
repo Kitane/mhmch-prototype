@@ -79,12 +79,7 @@
 			<!-- build -->
 			<echo>UNITY BUILD</echo>
 			<exec executable="/Applications/${unityVersion}/Unity.app/Contents/MacOS/Unity" dir="${projectDir}" failonerror="true">
-				<arg value="-batchmode"/>
-				<arg value="-quit"/>
-				<arg value="-projectPath ${projectDir}"/>
-				<arg value="-logfile"/>
-				<arg value="-executeMethod CommandBuild.BuildIOS"/>
-				<arg value="-customArgs:bundleId=${bundleId}"/>
+				<arg line="-batchmode -quit -projectPath ${projectDir} -logfile -executeMethod CommandBuild.BuildIOS -customArgs:bundleId=${bundleId}"/>
 			</exec>
 
 			<property name="xcode.projectDir" value="${projectDir}/Builds/Devices/IOS" />
