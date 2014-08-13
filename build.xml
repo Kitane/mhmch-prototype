@@ -1,12 +1,12 @@
-<project name="StarWarsCCG" default="build" >
+<project name="MetalSteamPanic" default="build" >
 	<!-- default values -->
 	<property name="platform" value="unity_iphone"/>
-	<property name="target" value="ProductName"/>
-	<property name="product" value="ProductName"/>
+	<property name="target" value="MetalSteamPanic"/>
+	<property name="product" value="MetalSteamPanic"/>
 	<property name="configuration" value="Debug"/>
 	<property name="provisionProfile" value="LM_Development"/>
 	<property name="build.number" value="0"/>
-	<property name="bundleId" value="com.Disney.StarWars"/>
+	<property name="bundleId" value="com.Disney.MetalSteamPanic"/>
 	<property name="enviromentOptions" value="EnvDevice" />
 	<property name="functionalityOptions" value="FuncDemo" />
 	<property name="resourceBundleName" value="ExternalResources.unity3d" />
