@@ -30,6 +30,10 @@
 	<dirname property="outputDir" file="${output}"/>
 	<mkdir dir="${outputDir}"/>
 		
+	<echo>VersionName:"${versionName} and versioncode:"${versionCode}" projectDir:"${projectDir}</echo>
+	
+	<echoproperties/>
+	
 	<!-- conditions setting -->
 	<condition property="isIphone">
 		<or>
@@ -45,17 +49,6 @@
 		</or>
 	</condition>
 	
-	<condition property="isMetro">
-		<or>
-			<contains string="${platform}" substring="win8" casesensitive="false" />
-			<contains string="${assets_platform}" substring="win8" casesensitive="false" />
-		</or>
-	</condition>
-	
-	<condition property="isAmazon">
-		<contains string="${bundleId}" substring="ama" casesensitive="false" />
-	</condition>
-	
 	<condition property="isMacServer" value="true">
 		<os family="mac"/>
 	</condition>
@@ -64,39 +57,14 @@
 		<os family="windows"/>
 	</condition>
 	
-	<!-- For generic type of build we have in platform "generic" so we use instead assets_platform, which is set in these cases -->
-	<property name="assets_platform" value="${platform}" />
-	
-	<target name="clean" unless="dontClean">
-		<delete dir="Library" failonerror="false" />
-		<delete dir="Temp" failonerror="false" />
-		<delete dir="Builds/Devices" failonerror="false" />
-	</target>
-
-
 	<!--<target name="build" depends="clean">-->
-	<target name="build" depends="_checkP4Sync">
-		<!-- we dont need this directory for devices -->
-		<delete dir="Assets/Data/Resources/GameData" failonerror="false" />
+	<target name="build">
+		<delete dir="Builds/Devices" failonerror="false" />
 		
 		<mkdir dir="Builds/Devices"/>
 		<mkdir dir="Builds/Devices/Android"/>
-		<mkdir dir="Builds/Devices/Metro"/>
 		<mkdir dir="Builds/Devices/IOS"/>
 		
-		<property file="Assets/Resources/version.txt"/>
-		
-		<!-- for both platform set settings according to server options -->
-		<antcall target="createConfiguration"/>
-		
-		<!-- dont create world json and resources with client, to speed up build process -->
-		<!-- create world json to upload to server -->
-		<!-- <antcall target="createWorld" / -->
-		
-		<!-- for actual platform create resource bundle -->
-		<!-- and add to platform directory and pack resources to zip -->
-		<!-- <antcall target="createAndPackResources" / -->
-
 		<do if="isIphone">
 			<!-- iphone -->
 			<echo>PROFILES</echo>
@@ -110,9 +78,13 @@
 
 			<!-- build -->
 			<echo>UNITY BUILD</echo>
-			<exec executable="${basedir}/Builds/Scripts/buildIOS.sh" dir="Builds/Scripts/" failonerror="true">
+			<exec executable="/Applications/${unityVersion}/Unity.app/Contents/MacOS/Unity" dir="${projectDir}" failonerror="true">
+				<arg value="-batchmode"/>
+				<arg value="-quit"/>
+				<arg value="-projectPath ${projectDir}"/>
+				<arg value="-logfile"/>
+				<arg value="-executeMethod CommandBuild.BuildIOS"/>
 				<arg value="-customArgs:bundleId=${bundleId}"/>
-				<arg value="${unityVersion}"/>
 			</exec>
 
 			<property name="xcode.projectDir" value="${projectDir}/Builds/Devices/IOS" />
@@ -189,25 +161,6 @@
 			</exec>		
 		</do>
 		
-		<do if="isMetro">	
-				<echo>UNITY BUILD WINDOWS 8 projectDir=${projectDir} </echo>
-				<exec executable="${cygwinDir}\bin\bash" dir="Builds/Scripts" failonerror="true">
-					<arg value="buildWin81.sh"/>
-					<arg value="${unityVersion}"/>
-					<arg value="${projectDir}/Builds/Devices/Metro"/>
-				</exec>
-				
-				<!--
-				<echo>VS BUILD WINDOWS 8</echo>
-				<exec executable="C:\Program Files (x86)\MSBuild\12.0\Bin\csc.exe" dir="Builds/Devices/Metro" failonerror="true">
-					<arg value="/target:appcontainerexe /out:StarWarsCCG.exe *.cs"/>
-				</exec>
-					
-				-->
-				<echo>VS BUILD WINDOWS 8 projectDir=${projectDir}</echo>
-				<exec executable="C:\Program Files (x86)\MSBuild\12.0\Bin\MSBuild.exe" dir="Builds/Devices/Metro/Assult Team" failonerror="true"/>
-		</do>
-
 		<do if="isAndroid">
 			<!-- android -->
 			
