@@ -23,6 +23,8 @@
 	<property name="publicToolsDir" value="${MDISNEY_HOME}/mo/production/global_framework/build_tools/public" />
 	<property name="lmUtilsDir" value="${MDISNEY_HOME}/mo/production/global_framework/build_tools/in_house/livingmobile"/>
 	
+	<echo>lmUtilsDir:"${lmUtilsDir} and MDISNEY_HOME:"${MDISNEY_HOME}"</echo>
+	
 	<taskdef resource="antUtils.taskdefs" classpath="${lmUtilsDir}/antUtils.jar;${lmUtilsDir}/p4utils.jar" />
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties" classpath="${publicToolsDir}/ant-contrib-1.0b3/ant-contrib.jar" />
 	<taskdef resource="org/jwaresoftware/antxtras/install/antlib-advanced.xml" classpath="${publicToolsDir}/antxtras_3.0.0b1/jw-antxtras-advanced.jar;${publicToolsDir}/antxtras_3.0.0b1/jw-antxtras.jar" />
