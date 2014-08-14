@@ -30,7 +30,7 @@ public class ActorScript : MonoBehaviour {
 	//actor parts to control
 	public GameObject 	Legs;
 	public GameObject 	Torso;
-
+	public GameObject _smokeGameObject;
 
 	public List<WeaponScript> Weapons;
 
@@ -45,7 +45,8 @@ public class ActorScript : MonoBehaviour {
 
 	private int _timeToGameOver = 200;
 	private string[] ANIMATION_STATES = {"walk", "stop", "shootL", "shootR", "rocket", "hit", "death", "run"};
-
+	private float _healthToShowSmoke;
+	private int HELTH_PERCENT_TO_SHOW_SMOKE = 20;
 
 	public void SetDestination(Vector3 destination)
 	{
@@ -99,6 +100,14 @@ public class ActorScript : MonoBehaviour {
 				SetAnimationStateWithStopOthers("death");
 			}
 		}
+		else if (Health <= _healthToShowSmoke)
+		{
+			//exists smoke object to enable
+			if (_smokeGameObject != null)
+			{
+				_smokeGameObject.SetActive(true);
+			}
+		}
 
 	}
 
@@ -113,6 +122,8 @@ public class ActorScript : MonoBehaviour {
 		Weapons = new List<WeaponScript> (GetComponentsInChildren<WeaponScript>());
 		Skills = new List<SkillScript> (GetComponentsInChildren<SkillScript>());
 		_previousTorsoRotation = Quaternion.identity;
+
+		_healthToShowSmoke = (MaxHealth / 100.0f) * HELTH_PERCENT_TO_SHOW_SMOKE;
 	}
 
 	void LateUpdate()
