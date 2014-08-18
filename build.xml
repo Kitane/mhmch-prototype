@@ -5,7 +5,6 @@
 	<property name="product" value="MetalSteamPanic"/>
 	<property name="configuration" value="Debug"/>
 	<property name="provisionProfile" value="LM_Development"/>
-	<property name="build.number" value="0"/>
 	<property name="bundleId" value="com.Disney.MetalSteamPanic"/>
 	<property name="enviromentOptions" value="EnvDevice" />
 	<property name="functionalityOptions" value="FuncDemo" />
@@ -16,7 +15,7 @@
 	<property name="projectDir" value="." />
 	<property name="dataType" value="default" />
 	
-	<property name="output" value="${target}-${configuration}-${provisionProfile}-${build.number}" />
+	<property name="output" value="${target}-${configuration}-${provisionProfile}-${versionCode}" />
 	
 	<property environment="env"/>
 	<property name="MDISNEY_HOME" value="${env.HOME}/mdisney" />
