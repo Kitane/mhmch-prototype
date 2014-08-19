@@ -8,8 +8,5 @@ public class BurstAttributes
 	public int Rounds;
 	public float RateOfFire;
 	public ProjectileAttributes Projectile;
-
-	public string PatternName;
-	//[HideInInspector]
 	public PatternDefinition Pattern;
 }

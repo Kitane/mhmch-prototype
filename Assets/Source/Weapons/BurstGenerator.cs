@@ -17,10 +17,6 @@ public abstract class BurstGenerator
 		_ownerWeapon = owner;
 		_ownerActor = owner.GetComponentInParent<ActorScript>();
 
-		if (!string.IsNullOrEmpty(attributes.PatternName)) {
-			//var patternObject = _ownerActor.gameObject.transform.Find(attributes.PatternName);
-			//attributes.Pattern = patternObject.GetComponent<PatternDefinition>();
-		}
 	}
 
 	public abstract void Fire(Transform target);
