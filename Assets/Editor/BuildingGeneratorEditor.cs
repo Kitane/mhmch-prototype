@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine;
 
+            
+
 [CustomEditor(typeof(BuildingGenerator))]
 public class BuildingGeneratorEditor : Editor
 {
