@@ -23,10 +23,24 @@ public class MissileGenerator : BurstGenerator
 	{
 		if (_roundsRemaining > 0 && _timeElapsed <= 0.0f)
 		{
-			//TODO FIRE bullet 
-			var rotation = Quaternion.LookRotation(_target.position - _sourcePos.transform.position );
-			
-			GameObject bullet = (GameObject)GameObject.Instantiate(_attributes.Projectile.Model, _sourcePos.transform.position, rotation);
+			Vector3 projectileTarget;
+			Vector3 projectileSource;
+			if ((_attributes.Pattern != null)) 
+			{
+				projectileTarget = _attributes.Pattern.GetNextTargetPoint();
+				projectileSource = _attributes.Pattern.AlternateSpawnPoints() ? _attributes.Pattern.GetNextSpawnPoint() : _attributes.Pattern.transform.position;
+			} 
+			else
+			{
+				projectileTarget = _target.position;
+				projectileSource = _sourcePos.transform.position;
+			}
+
+			var direction = projectileTarget - projectileSource;
+			direction.y = 0.0f;
+			var rotation = Quaternion.LookRotation(direction);
+
+			GameObject bullet = (GameObject)GameObject.Instantiate(_attributes.Projectile.Model, projectileSource, rotation);
 			var bulletScript = bullet.GetComponent<ProjectileScript>();
 			bulletScript.RemainingTime = _attributes.Projectile.Duration;
 			bulletScript.Definition = _attributes.Projectile;

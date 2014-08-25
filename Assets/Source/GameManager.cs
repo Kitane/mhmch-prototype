@@ -26,5 +26,13 @@ public class GameManager
 
 	public bool Running { get; set; }
 
+	public enum MechTypes
+	{
+		Old,
+		New
+	}
+
+	public MechTypes MechType { get; set; }
+
 }
 

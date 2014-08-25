@@ -3,11 +3,21 @@ using System.Collections;
 
 public class SplashHandler : MonoBehaviour
 {	
+	GameObject mechPanel;
+
+	void Start()
+	{
+		mechPanel = GameObject.Find ("MechPanel");
+		mechPanel.SetActive(false);
+
+	}
 	void OnPress(bool pressed)
 	{
-		if (pressed)
-		{
-			Application.LoadLevel("MainScene");
-		}
+		var splashPanel = GameObject.Find("SplashPanel");
+		splashPanel.SetActive(false);
+
+		mechPanel.SetActive(true);
 	}
 }
+
+
